@@ -1,122 +1,16 @@
-# 🛡️ Consumer Trust Platform (Frontend)
+# React + Vite
 
-A unified web application designed to help consumers verify the **safety, authenticity, and quality** of everyday products such as packaged foods, alcohol, and drinking water.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
----
+Currently, two official plugins are available:
 
-## 🚀 Overview
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-In today’s digital commerce environment, consumers often lack trust in the products they purchase due to limited transparency. This platform provides a **single interface** where users can scan and verify products using software-based solutions.
+## React Compiler
 
-The application focuses on:
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-* Product verification
-* Health awareness (sugar tracking)
-* Transparency through data visualization
-* Clean and accessible UI/UX
+## Expanding the ESLint configuration
 
----
-
-## 🎯 Features
-
-### 🔍 Product Scanning System
-
-* Simulated QR / barcode scanning
-* Central entry point for verification
-* Modular scan flows
-
-### 🍬 Sugar Tracker
-
-* Converts sugar (grams → teaspoons)
-* Daily intake tracking
-* Visual progress (charts, indicators)
-* Detects high sugar consumption
-
-### 🍷 Alcohol Verification
-
-* Verifies authenticity using codes
-* Displays product status:
-
-  * Genuine
-  * Suspicious
-  * Already used
-* Shows batch and manufacturer info
-
-### 💧 Water Purity Verification
-
-* Displays purification data
-* Shows TDS levels
-* Certificate-style UI for trust
-* Supplier trust score
-
-### 📢 Complaint & Reporting
-
-* Multi-step form
-* File upload support (image proof)
-* User-friendly submission flow
-
----
-
-## ⚠️ Constraints
-
-* Purely **software-based implementation**
-* No IoT or hardware dependency
-* Uses:
-
-  * QR / barcode inputs
-  * Mock APIs / backend-ready structure
-  * Rule-based verification logic
-
----
-
-## 🧱 Tech Stack
-
-* **React (Vite)**
-* **Tailwind CSS**
-* **Material UI (MUI)**
-* **Redux Toolkit**
-* **React Router**
-* **Formik + Yup**
-* **Axios**
-* **Recharts / Chart.js**
-
----
-
-## 📁 Project Structure
-
-```
-src/
-  components/
-  pages/
-  features/
-    auth/
-    product/
-    scan/
-    reports/
-  hooks/
-  services/
-  utils/
-  store/
-```
-
----
-
-## 🎨 Figma Design
-
-Explore the complete UI/UX design and prototype here:
-
-👉 https://www.figma.com/design/YBDuWGLy6yqIYLaZHGoAnE/HW-7-8--minecraft-valo?node-id=2014-3&m=dev&t=fQ0yk5UzXoIFx2dL-1
-
----
-
-## 📌 Footer
-
-Built with ❤️ as part of a full-stack frontend engineering project.
-
-Designed to demonstrate:
-
-* Scalable architecture
-* Clean UI/UX principles
-* Real-world problem solving
-
-© 2026 Consumer Trust Platform | Academic Project
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
