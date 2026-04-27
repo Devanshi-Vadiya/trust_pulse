@@ -32,6 +32,33 @@ export const useAuth = () => {
     }
   };
 
+  const signup = async (email, password, name) => {
+    dispatch(loginStart());
+    try {
+      // Simulate API call delay
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      
+      // Temporary mock signup logic
+      if (email && password && name) {
+        dispatch(loginSuccess({
+          token: 'mock-jwt-token-new-user',
+          user: {
+            id: Date.now().toString(),
+            name: name,
+            email: email,
+            role: 'User'
+          }
+        }));
+        return true;
+      } else {
+        throw new Error('All fields are required');
+      }
+    } catch (err) {
+      dispatch(loginFailure(err.message || 'Signup failed'));
+      return false;
+    }
+  };
+
   const logout = () => {
     dispatch(logoutAction());
   };
@@ -43,6 +70,7 @@ export const useAuth = () => {
     loading,
     error,
     login,
+    signup,
     logout,
     isAdmin: user?.role === 'Admin',
   };

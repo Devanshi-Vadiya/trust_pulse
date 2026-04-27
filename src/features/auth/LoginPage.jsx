@@ -4,35 +4,42 @@ import { Visibility, VisibilityOff, Security as SecurityIcon, AlternateEmail as 
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useSnackbar } from 'notistack';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+
+const loginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email('Please enter a valid email address')
+    .required('Email is required'),
+  password: Yup.string()
+    .min(6, 'Password must be at least 6 characters')
+    .required('Password is required'),
+});
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const navigate = useNavigate();
   const { login, error } = useAuth();
   const { enqueueSnackbar } = useSnackbar();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    if (!email || !password) {
-      enqueueSnackbar('Please fill in login details', { variant: 'warning' });
-      return;
-    }
-    
-    setIsSubmitting(true);
-    const success = await login(email, password);
-    setIsSubmitting(false);
-    
-    if (success) {
-      enqueueSnackbar('Login successful', { variant: 'success' });
-      navigate('/dashboard');
-    } else {
-      enqueueSnackbar(error || 'Invalid credentials', { variant: 'error' });
-    }
-  };
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+    validationSchema: loginSchema,
+    onSubmit: async (values) => {
+      const success = await login(values.email, values.password);
+      
+      if (success) {
+        enqueueSnackbar('Login successful', { variant: 'success' });
+        navigate('/dashboard');
+      } else {
+        enqueueSnackbar(error || 'Invalid credentials', { variant: 'error' });
+      }
+    },
+  });
 
   return (
     <Box className="min-h-screen flex w-full bg-slate-50 font-sans">
@@ -91,15 +98,19 @@ const LoginPage = () => {
             </Typography>
           </Box>
 
-          <form onSubmit={handleLogin} className="space-y-6">
+          <form onSubmit={formik.handleSubmit} className="space-y-6">
             <Box className="space-y-1">
               <Typography className="text-sm font-semibold text-gray-700 ml-1">Work Email</Typography>
               <TextField
                 fullWidth
+                name="email"
                 variant="outlined"
                 placeholder="admin@trustpulse.ai"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.email && Boolean(formik.errors.email)}
+                helperText={formik.touched.email && formik.errors.email}
                 autoComplete="email"
                 InputProps={{
                   startAdornment: (
@@ -128,11 +139,15 @@ const LoginPage = () => {
               </Box>
               <TextField
                 fullWidth
+                name="password"
                 type={showPassword ? 'text' : 'password'}
                 variant="outlined"
                 placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                error={formik.touched.password && Boolean(formik.errors.password)}
+                helperText={formik.touched.password && formik.errors.password}
                 autoComplete="current-password"
                 InputProps={{
                   startAdornment: (
@@ -169,18 +184,23 @@ const LoginPage = () => {
               type="submit"
               fullWidth
               variant="contained"
-              disabled={isSubmitting}
-              className={`py-3.5 rounded-xl font-semibold shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)] hover:bg-primary-700 transition-all duration-200 text-[15px] ${isSubmitting ? 'bg-primary-400' : 'bg-primary-600'}`}
+              disabled={formik.isSubmitting}
+              className={`py-3.5 rounded-xl font-semibold shadow-[0_4px_14px_0_rgba(37,99,235,0.39)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.23)] hover:bg-primary-700 transition-all duration-200 text-[15px] ${formik.isSubmitting ? 'bg-primary-400' : 'bg-primary-600'}`}
               sx={{ textTransform: 'none' }}
             >
-              {isSubmitting ? <CircularProgress size={24} color="inherit" /> : 'Log In Securely'}
+              {formik.isSubmitting ? <CircularProgress size={24} color="inherit" /> : 'Log In Securely'}
             </Button>
 
             <Box className="mt-8 text-center">
               <Typography className="text-gray-500 text-sm">
                 Don't have an account?{' '}
-                <Link href="#" underline="none" className="text-primary-600 hover:text-primary-700 font-semibold transition-colors">
-                  Contact System Admin
+                <Link 
+                  href="/signup" 
+                  onClick={(e) => { e.preventDefault(); navigate('/signup'); }} 
+                  underline="none" 
+                  className="text-primary-600 hover:text-primary-700 font-semibold transition-colors"
+                >
+                  Sign Up
                 </Link>
               </Typography>
             </Box>
