@@ -1,16 +1,28 @@
-# React + Vite
+# TrustPulse AI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TrustPulse is a Clinical Precision Engine that allows users to seamlessly verify the safety, authenticity, and clinical compliance of consumables including supplements, alcohol, and water.
 
-Currently, two official plugins are available:
+## Project Structure
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This repository is split into two main sections:
 
-## React Compiler
+- **`frontend/`**: The React-based consumer web application built with Tailwind CSS and Material UI.
+- **`backend/`**: The server-side API (to be implemented).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Getting Started
 
-## Expanding the ESLint configuration
+### Frontend
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To run the frontend development server:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+### Features
+- **Dashboard**: High-level overview of daily safety insights, including sugar tracking, alcohol status, and water purity.
+- **Scanner**: Real-time camera or manual code entry to query products.
+- **Risk Reports**: Detailed breakdown of scanned items and metabolic risk factors.
+- **Verified Products**: Chain of custody verification for registered products.
