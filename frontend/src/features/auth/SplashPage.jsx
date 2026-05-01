@@ -1,60 +1,124 @@
-import { Box, Button, Typography, Paper } from '@mui/material';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Security as SecurityIcon, 
-  AssuredWorkload as AssuredWorkloadIcon, 
-  Analytics as AnalyticsIcon, 
-  VerifiedUser as VerifiedUserIcon 
-} from '@mui/icons-material';
+import { Box, Typography } from '@mui/material';
+import AppButton from '../../components/AppButton';
+import PageSEO from '../../components/PageSEO';
 
 const SplashPage = () => {
   const navigate = useNavigate();
 
   return (
-    <Box
-      className="min-h-screen flex items-center justify-center p-4"
-      sx={{
-        background: 'linear-gradient(135deg, #f0f7ff 0%, #e0efff 100%)',
-      }}
-    >
-      <Paper 
-        elevation={0}
-        className="max-w-md w-full p-10 text-center rounded-2xl border border-blue-100 bg-white/80 backdrop-blur-sm shadow-xl"
+    <>
+      <PageSEO
+        title="Welcome"
+        description="TrustPulse AI — Real-time clinical product safety verification. Verify sugar, alcohol, and water purity instantly."
+        path="/"
+      />
+      <Box
+        component="main"
+        role="main"
+        sx={{
+          minHeight: '100vh',
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1d4ed8 100%)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          fontFamily: 'Inter, sans-serif',
+          p: 3,
+          textAlign: 'center',
+        }}
       >
-        <Box className="w-20 h-20 bg-primary-600 rounded-2xl mx-auto flex items-center justify-center mb-6 shadow-lg shadow-blue-500/30">
-          <SecurityIcon className="text-white !text-4xl" />
+        {/* Logo */}
+        <Box
+          sx={{
+            width: 80,
+            height: 80,
+            borderRadius: '20px',
+            backgroundColor: 'rgba(255,255,255,0.15)',
+            border: '1px solid rgba(255,255,255,0.25)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '2.5rem',
+            mb: 3,
+            backdropFilter: 'blur(10px)',
+          }}
+        >
+          🛡️
         </Box>
-        
-        <Typography variant="h4" className="font-bold text-gray-900 mb-2">
+
+        <Typography
+          sx={{
+            fontWeight: 800,
+            fontSize: { xs: '2rem', md: '3rem' },
+            color: '#fff',
+            lineHeight: 1.1,
+            mb: 1.5,
+          }}
+        >
           TrustPulse AI
         </Typography>
-        <Typography variant="subtitle1" className="text-primary-600 font-medium mb-6">
+
+        <Typography
+          sx={{
+            fontSize: { xs: '1rem', md: '1.25rem' },
+            color: 'rgba(255,255,255,0.7)',
+            mb: 1,
+            fontWeight: 500,
+          }}
+        >
           Clinical Precision Engine
         </Typography>
-        
-        <Typography variant="body1" className="text-gray-600 mb-10 text-lg">
-          Empowering consumer safety through data-driven transparency and real-time risk assessment.
+
+        <Typography
+          sx={{ fontSize: '0.9375rem', color: 'rgba(255,255,255,0.5)', mb: 6, maxWidth: 480 }}
+        >
+          Real-time product safety verification powered by advanced clinical intelligence.
         </Typography>
 
-        <Button 
-          variant="contained" 
-          color="primary" 
-          fullWidth 
-          size="large"
-          className="py-3 shadow-md bg-primary-600 hover:bg-primary-700 font-medium text-lg"
-          onClick={() => navigate('/login')}
-          disableElevation
-        >
-          Get Started &rarr;
-        </Button>
-
-        <Box className="mt-10 flex justify-center gap-6 text-gray-400">
-          <VerifiedUserIcon fontSize="small" />
-          <AnalyticsIcon fontSize="small" />
-          <AssuredWorkloadIcon fontSize="small" />
+        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
+          <AppButton
+            variant="contained"
+            onClick={() => navigate('/login')}
+            sx={{
+              backgroundColor: '#fff',
+              color: '#1d4ed8',
+              fontWeight: 700,
+              fontSize: '1rem',
+              px: 4,
+              py: 1.5,
+              borderRadius: '12px',
+              textTransform: 'none',
+              '&:hover': { backgroundColor: '#f0f9ff' },
+            }}
+          >
+            Get Started
+          </AppButton>
+          <AppButton
+            variant="outlined"
+            onClick={() => navigate('/signup')}
+            sx={{
+              borderColor: 'rgba(255,255,255,0.4)',
+              color: '#fff',
+              fontWeight: 600,
+              fontSize: '1rem',
+              px: 4,
+              py: 1.5,
+              borderRadius: '12px',
+              textTransform: 'none',
+              '&:hover': { borderColor: '#fff', backgroundColor: 'rgba(255,255,255,0.1)' },
+            }}
+          >
+            Create Account
+          </AppButton>
         </Box>
-      </Paper>
-    </Box>
+
+        <Typography sx={{ mt: 6, fontSize: '0.8125rem', color: 'rgba(255,255,255,0.35)' }}>
+          Trusted by clinical safety professionals worldwide
+        </Typography>
+      </Box>
+    </>
   );
 };
 
