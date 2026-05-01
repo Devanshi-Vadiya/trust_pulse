@@ -1,5 +1,11 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { logout as logoutAction, loginStart, loginSuccess, loginFailure } from '../store/slices/authSlice';
+import {
+  logout as logoutAction,
+  loginStart,
+  loginSuccess,
+  loginFailure,
+} from '../store/authSlice';
+import apiClient from '../services/api';
 
 export const useAuth = () => {
   const dispatch = useDispatch();
@@ -8,26 +14,16 @@ export const useAuth = () => {
   const login = async (email, password) => {
     dispatch(loginStart());
     try {
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 800));
-      
-      // Temporary mock login logic
-      if (email && password) {
-        dispatch(loginSuccess({
-          token: 'mock-jwt-token-12345',
-          user: {
-            id: '1',
-            name: 'Devanshi Vadiya',
-            email: email,
-            role: 'Admin'
-          }
-        }));
+      const response = await apiClient.post('/auth/login', { email, password });
+
+      if (response.data.success) {
+        const { token, user } = response.data;
+        dispatch(loginSuccess({ token, user }));
         return true;
-      } else {
-        throw new Error('Please enter both email and password');
       }
+      return false;
     } catch (err) {
-      dispatch(loginFailure(err.message || 'Login failed'));
+      dispatch(loginFailure(err.response?.data?.message || err.message || 'Login failed'));
       return false;
     }
   };
@@ -35,26 +31,16 @@ export const useAuth = () => {
   const signup = async (email, password, name) => {
     dispatch(loginStart());
     try {
-      // Simulate API call delay
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // Temporary mock signup logic
-      if (email && password && name) {
-        dispatch(loginSuccess({
-          token: 'mock-jwt-token-new-user',
-          user: {
-            id: Date.now().toString(),
-            name: name,
-            email: email,
-            role: 'User'
-          }
-        }));
+      const response = await apiClient.post('/auth/signup', { email, password, fullName: name });
+
+      if (response.data.success) {
+        const { token, user } = response.data;
+        dispatch(loginSuccess({ token, user }));
         return true;
-      } else {
-        throw new Error('All fields are required');
       }
+      return false;
     } catch (err) {
-      dispatch(loginFailure(err.message || 'Signup failed'));
+      dispatch(loginFailure(err.response?.data?.message || err.message || 'Signup failed'));
       return false;
     }
   };
