@@ -6,7 +6,7 @@ import PageSEO from '../../components/PageSEO';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import AppCard from '../../components/AppCard';
-import { Box, Typography, CardContent, LinearProgress } , useTheme } from '@mui/material';
+import { Box, Typography, CardContent, LinearProgress, useTheme } from '@mui/material';
 import { Search as SearchIcon, CheckCircle, Warning, WaterDrop } from '@mui/icons-material';
 
 const parameters = [
