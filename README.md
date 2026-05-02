@@ -1,38 +1,38 @@
 🛡️ Consumer Trust Platform
-
-A unified web application to help consumers verify product safety, authenticity, and quality across multiple domains like food, alcohol, and water.
-
+<p align="center"> <b>A unified platform to verify product safety, authenticity, and quality</b><br/> <i>Scan • Verify • Track • Trust</i> </p>
 🔗 Important Links
-🎨 Figma Design: https://www.figma.com/design/YBDuWGLy6yqIYLaZHGoAnE/HW-7-8--minecraft-valo?node-id=2015-1786&t=wiNyJq0RSRw7qaG2-1
-🌐 Live Project: https://trust-pulse-blue.vercel.app/
-📬 Postman API Docs: https://documenter.getpostman.com/view/50839376/2sBXqKofA8
-🎥 YouTube Demo: [https://your-youtube-link.com](https://youtu.be/711ulGf-7ck)
+Resource	Link
+🎨 Figma Design	https://www.figma.com/design/YBDuWGLy6yqIYLaZHGoAnE/HW-7-8--minecraft-valo?node-id=2015-1786&t=wiNyJq0RSRw7qaG2-1
+
+🌐 Live Project	https://trust-pulse-blue.vercel.app/
+
+📬 Postman API Docs	https://documenter.getpostman.com/view/50839376/2sBXqKofA8
+
+🎥 YouTube Demo	https://your-youtube-link.com
 🧠 Problem Statement
 
-Consumers today face a major lack of transparency when purchasing everyday products.
+Consumers today face a lack of transparency and trust when purchasing everyday products.
 
-Packaged foods contain hidden sugars that are difficult to interpret
-Alcohol authenticity cannot be verified easily
-Delivered water quality is uncertain
-There is no unified platform to validate product safety
+🍬 Sugar content is difficult to understand (grams are not intuitive)
+🍷 Alcohol authenticity cannot be verified easily
+💧 Water purity is uncertain
+📦 No unified system exists to validate product safety
 
-Most solutions are fragmented or require hardware-based systems, making them impractical.
-
-👉 There is a need for a software-based unified consumer trust platform.
+👉 Existing solutions are fragmented or hardware-dependent.
 
 🚀 Solution
 
-This project introduces a Consumer Trust Platform that allows users to:
+The Consumer Trust Platform provides a software-based unified solution that allows users to:
 
-Scan products using barcode/QR
-Track sugar intake in understandable formats
-Verify alcohol authenticity
-Check water purity
-Report suspicious or unsafe products
+🔍 Scan products using barcode/QR
+🍬 Track sugar intake in understandable units (teaspoons)
+🍷 Verify alcohol authenticity
+💧 Check water purity
+📢 Report unsafe or suspicious products
 
 All features are integrated into a single, clean, and accessible web application.
 
-🎯 Features
+✨ Features
 🔍 Product Scan System
 Global scan functionality
 Module-specific scan actions
@@ -44,7 +44,7 @@ Shows percentage of daily limit
 Visual progress indicators
 🍷 Alcohol Verification
 Verifies product authenticity
-Detects duplicate usage
+Detects duplicate scans
 Displays batch and manufacturer details
 💧 Water Verification
 Displays TDS levels
@@ -52,12 +52,12 @@ Shows purification status
 Supplier trust scoring
 📢 Complaint System
 Multi-step reporting form
-File upload (image proof)
+File upload support
 User-friendly submission flow
 🎨 UI/UX
 Fully responsive design
 Light/Dark theme support
-Clean and modern interface
+Clean dashboard layout
 🧱 Tech Stack
 Frontend
 React (Vite)
@@ -70,16 +70,15 @@ Node.js
 Express.js
 MongoDB Atlas
 Mongoose
-Other Tools
-Axios (API handling)
-Formik + Yup (forms & validation)
-Postman (API testing)
-Figma (UI/UX design)
+Tools
+Axios
+Formik + Yup
+Postman
+Figma
 📁 Folder Structure
-Frontend (src/)
+📦 Frontend (src/)
 src/
   components/
-  pages/
   features/
     auth/
     dashboard/
@@ -87,12 +86,13 @@ src/
     verification/
     tracker/
     reports/
+  pages/
   hooks/
   services/
   store/
   utils/
   styles/
-Backend (backend/)
+⚙️ Backend (backend/)
 backend/
   controllers/
   routes/
@@ -101,20 +101,35 @@ backend/
   middleware/
   utils/
   config/
+🖼️ Screenshots
 
+Add your screenshots here for better evaluation
+
+📊 Dashboard
+
+🔍 Scan Feature
+
+🍬 Sugar Tracker
+
+🍷 Alcohol Verification
+
+💧 Water Verification
 
 ⚙️ Setup Instructions
-Frontend
+📥 Clone Repository
+git clone https://github.com/your-username/your-repo-name
+cd your-repo-name
+💻 Frontend
 cd frontend
 npm install
 npm run dev
-Backend
+⚙️ Backend
 cd backend
 npm install
 npm run dev
-Environment Variables
+🔐 Environment Variables
 
-Create .env in backend:
+Create a .env file inside backend:
 
 MONGO_URI=your_mongodb_uri
 JWT_SECRET=your_secret
@@ -123,18 +138,27 @@ PORT=5000
 
 This project demonstrates:
 
-Full-stack development skills
-Clean architecture and modular design
-Real-world problem solving
-Scalable and production-ready structure
+✅ Scalable frontend architecture
+✅ Clean API integration
+✅ Full-stack development skills
+✅ Real-world problem solving
+✅ Production-ready structure
 🚀 Future Scope
-Real manufacturer API integration
+Manufacturer API integrations
 AI-based product verification
-Real-time tracking system
+Real-time tracking systems
 Advanced analytics dashboard
 👤 Author
-GitHub: [https://github.com/your-username](https://github.com/Devanshi-Vadiya)
-LinkedIn: https://www.linkedin.com/in/devanshi-vadiya-66364b397/
-⭐ Note
+GitHub: https://github.com/your-username
+LinkedIn: https://linkedin.com/in/your-profile
+⭐ Support
 
-This project is built for academic and demonstration purposes, focusing on software-based solutions without IoT dependency.
+If you found this project useful:
+
+👉 Star ⭐ the repository
+👉 Share feedback
+👉 Connect with me
+
+📌 Note
+
+This project is purely software-based and avoids IoT dependency to ensure scalability and accessibility.
