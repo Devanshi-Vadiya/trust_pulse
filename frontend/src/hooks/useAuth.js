@@ -28,10 +28,10 @@ export const useAuth = () => {
     }
   };
 
-  const signup = async (email, password, name) => {
+  const signup = async (name, email, password) => {
     dispatch(loginStart());
     try {
-      const response = await apiClient.post('/auth/signup', { email, password, fullName: name });
+      const response = await apiClient.post('/auth/signup', { name, email, password });
 
       if (response.data.success) {
         const { token, user } = response.data;
