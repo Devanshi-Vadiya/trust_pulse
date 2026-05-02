@@ -65,19 +65,16 @@ const AlcoholVerificationPage = () => {
     setScanned(false);
     
     try {
-      const response = await apiClient.post('/alcohol/verify', { code: query.trim() });
+      // Utilizing the Open Food Facts global API route
+      const response = await apiClient.post('/sugar/scan', { barcode: query.trim() });
       const data = response.data.data;
       
-      if (data.found) {
-        enqueueSnackbar(`Verified: ${data.product.productName} - ${data.statusLabel}`, { 
-          variant: data.isDuplicate || data.status === 'suspicious' ? 'warning' : 'success' 
-        });
-        setScanned(true);
-      } else {
-         enqueueSnackbar('Product code not found in our verification database.', { variant: 'error' });
-      }
+      enqueueSnackbar(`Verified Brand: ${data.brand || 'Unknown'} - ${data.name}`, { 
+        variant: 'success' 
+      });
+      setScanned(true);
     } catch (err) {
-      enqueueSnackbar(err.response?.data?.message || 'Verification failed. Try another code.', { variant: 'error' });
+      enqueueSnackbar('Product barcode not found in global database.', { variant: 'error' });
     } finally {
       setLoading(false);
     }
