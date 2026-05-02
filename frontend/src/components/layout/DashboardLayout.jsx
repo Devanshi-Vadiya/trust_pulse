@@ -5,7 +5,7 @@ import TopBar from './TopBar';
 
 const DashboardLayout = () => {
   return (
-    <Box className="flex h-screen bg-gray-50 overflow-hidden font-sans">
+    <Box className="flex h-screen bg-gray-50 dark:bg-slate-900 overflow-hidden font-sans">
       <Sidebar />
       <Box className="flex-1 flex flex-col h-full bg-slate-50 relative min-w-0">
         {/* Pass activeTab and title dynamically in absolute nested routes if preferred, 

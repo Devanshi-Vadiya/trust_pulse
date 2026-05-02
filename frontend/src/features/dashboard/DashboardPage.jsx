@@ -40,15 +40,15 @@ const DashboardPage = () => {
   const firstName = user?.name?.split(' ')[0] || 'Devanshi';
 
   return (
-    <Box className="p-8 lg:p-12 space-y-10 animate-fade-in bg-white min-h-full font-sans">
+    <Box className="p-8 lg:p-12 space-y-10 animate-fade-in bg-white dark:bg-slate-950 min-h-full font-sans">
       
       {/* Header Section */}
       <Box className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
         <Box>
-          <Typography variant="h3" className="font-bold text-gray-900 tracking-tight mb-2">
+          <Typography variant="h3" className="font-bold text-gray-900 dark:text-white tracking-tight mb-2">
             Hi {firstName}!
           </Typography>
-          <Typography className="text-gray-500 text-lg font-medium">
+          <Typography className="text-gray-500 dark:text-slate-400 text-lg font-medium">
             Here is your daily clinical safety digest.
           </Typography>
         </Box>
@@ -66,12 +66,12 @@ const DashboardPage = () => {
       <Box className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         
         {/* Sugar Tracker Card */}
-        <Card elevation={0} className="rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+        <Card elevation={0} className="rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardContent className="p-8 flex flex-col items-center">
             <Box className="w-full flex justify-between items-start mb-6">
               <Box className="flex items-center gap-3">
-                <Box className="text-amber-700">💧</Box>
-                <Typography className="font-bold text-2xl text-gray-900 leading-tight">
+                <Box className="text-amber-700 dark:text-amber-400">💧</Box>
+                <Typography className="font-bold text-2xl text-gray-900 dark:text-white leading-tight">
                   Sugar<br />Tracker
                 </Typography>
               </Box>
@@ -86,7 +86,7 @@ const DashboardPage = () => {
               <SugarGauge value={60} />
             </Box>
 
-            <Typography className="text-gray-500 text-center text-sm mb-8 leading-relaxed">
+            <Typography className="text-gray-500 dark:text-slate-400 text-center text-sm mb-8 leading-relaxed">
               Daily recommended limit is 50g. You are currently tracking above average.
             </Typography>
 
@@ -95,7 +95,7 @@ const DashboardPage = () => {
               variant="outlined" 
               startIcon={<AddIcon />}
               onClick={() => navigate('/sugar-tracker')}
-              className="border-gray-300 text-gray-700 font-bold py-2.5 rounded-xl normal-case hover:bg-gray-50"
+              className="border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 font-bold py-2.5 rounded-xl normal-case hover:bg-gray-50 dark:bg-slate-900"
             >
               Log Item
             </Button>
@@ -103,30 +103,30 @@ const DashboardPage = () => {
         </Card>
 
         {/* Alcohol Status Card */}
-        <Card elevation={0} className="rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+        <Card elevation={0} className="rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardContent className="p-8 flex flex-col items-center">
             <Box className="w-full flex justify-between items-start mb-6">
               <Box className="flex items-center gap-3">
-                <DrinkIcon className="text-blue-700" />
-                <Typography className="font-bold text-2xl text-gray-900 leading-tight">
+                <DrinkIcon className="text-blue-700 dark:text-blue-400" />
+                <Typography className="font-bold text-2xl text-gray-900 dark:text-white leading-tight">
                   Alcohol Status
                 </Typography>
               </Box>
               <Chip 
                 label="Clear" 
                 size="small" 
-                className="bg-blue-100 text-blue-700 font-bold rounded-lg px-2" 
+                className="bg-blue-100 text-blue-700 dark:text-blue-400 font-bold rounded-lg px-2" 
               />
             </Box>
 
-            <Box className="my-10 w-24 h-24 bg-gray-100 rounded-2xl flex items-center justify-center">
+            <Box className="my-10 w-24 h-24 bg-gray-100 dark:bg-slate-800 rounded-2xl flex items-center justify-center">
               <CheckCircleIcon className="text-blue-600 text-5xl" />
             </Box>
 
-            <Typography className="font-bold text-gray-900 text-center text-lg mb-2">
+            <Typography className="font-bold text-gray-900 dark:text-white text-center text-lg mb-2">
               All clear for today.
             </Typography>
-            <Typography className="text-gray-500 text-center text-sm mb-8 leading-relaxed">
+            <Typography className="text-gray-500 dark:text-slate-400 text-center text-sm mb-8 leading-relaxed">
               No conflicting medications or recent alerts detected in your profile.
             </Typography>
 
@@ -135,7 +135,7 @@ const DashboardPage = () => {
               variant="outlined" 
               startIcon={<SearchIcon />}
               onClick={() => navigate('/alcohol-verification')}
-              className="border-gray-300 text-gray-700 font-bold py-2.5 rounded-xl normal-case hover:bg-gray-50"
+              className="border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 font-bold py-2.5 rounded-xl normal-case hover:bg-gray-50 dark:bg-slate-900"
             >
               Verify Beverage
             </Button>
@@ -143,19 +143,19 @@ const DashboardPage = () => {
         </Card>
 
         {/* Water Purity Card */}
-        <Card elevation={0} className="rounded-3xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300">
+        <Card elevation={0} className="rounded-3xl border border-gray-100 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardContent className="p-8">
             <Box className="flex items-center gap-3 mb-8">
               <WaterIcon className="text-blue-500" />
-              <Typography className="font-bold text-2xl text-gray-900 leading-tight">
+              <Typography className="font-bold text-2xl text-gray-900 dark:text-white leading-tight">
                 Water Purity
               </Typography>
             </Box>
 
             <Box className="mb-6">
               <Box className="flex items-baseline gap-1 mb-1">
-                <Typography className="font-black text-5xl text-gray-900">98</Typography>
-                <Typography className="text-gray-400 font-bold text-xl">/ 100</Typography>
+                <Typography className="font-black text-5xl text-gray-900 dark:text-white">98</Typography>
+                <Typography className="text-gray-400 dark:text-slate-500 font-bold text-xl">/ 100</Typography>
               </Box>
               <Box className="flex items-center gap-1 text-blue-600">
                 <TrendingUpIcon fontSize="small" />
@@ -167,12 +167,12 @@ const DashboardPage = () => {
               <LinearProgress 
                 variant="determinate" 
                 value={98} 
-                className="h-2 rounded-full bg-gray-100"
+                className="h-2 rounded-full bg-gray-100 dark:bg-slate-800"
                 sx={{ '& .MuiLinearProgress-bar': { backgroundColor: '#1d4ed8' } }}
               />
             </Box>
 
-            <Typography className="text-gray-500 text-sm mb-8 leading-relaxed">
+            <Typography className="text-gray-500 dark:text-slate-400 text-sm mb-8 leading-relaxed">
               Recent scan at Home location indicates optimal mineral balance and low contaminants.
             </Typography>
 
@@ -181,7 +181,7 @@ const DashboardPage = () => {
               variant="outlined" 
               startIcon={<DrinkIcon />}
               onClick={() => navigate('/water-verification')}
-              className="border-gray-300 text-gray-700 font-bold py-2.5 rounded-xl normal-case hover:bg-gray-50"
+              className="border-gray-300 dark:border-slate-600 text-gray-700 dark:text-gray-200 font-bold py-2.5 rounded-xl normal-case hover:bg-gray-50 dark:bg-slate-900"
             >
               Test Source
             </Button>
