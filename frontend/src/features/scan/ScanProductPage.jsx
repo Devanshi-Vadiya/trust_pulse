@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Html5QrcodeScanner } from 'html5-qrcode';
 import { Box, Typography, TextField, Button, Card, CardContent, Avatar } from '@mui/material';
 import { QrCodeScanner as QrCodeScannerIcon, Search as SearchIcon, CheckCircle as CheckCircleIcon, Warning as WarningIcon, Cancel as CancelIcon, HelpOutlined as HelpIcon, ZoomOutMap as ExpandIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
@@ -20,7 +21,34 @@ const StatusIcon = ({ type }) => {
 
 const ScanProductPage = () => {
   const [code, setCode] = useState('');
+  const [scanning, setScanning] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (scanning) {
+      const scanner = new Html5QrcodeScanner(
+        'reader',
+        { fps: 10, qrbox: { width: 250, height: 150 } },
+        false
+      );
+
+      scanner.render(
+        (decodedText) => {
+          setCode(decodedText);
+          scanner.clear();
+          setScanning(false);
+        },
+        (error) => {
+          // Ignore frequent scanning errors
+        }
+      );
+
+      return () => {
+        scanner.clear().catch(e => console.error(e));
+      };
+    }
+  }, [scanning]);
+
   const handleVerify = () => { if (code.trim()) navigate('/product/sample'); };
 
   return (
@@ -51,19 +79,22 @@ const ScanProductPage = () => {
               <ExpandIcon sx={{ fontSize: 18, color: '#9ca3af' }} />
             </Box>
             <Box sx={{ position: 'relative', backgroundColor: '#4b5563', height: 380, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <Typography sx={{ fontSize: '5rem' }}>📷</Typography>
-              {/* Frame */}
-              <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: 220, height: 160, border: '2px solid #3b82f6', borderRadius: '4px' }}>
-                <Box sx={{ position: 'absolute', top: -2, left: -2, width: 18, height: 18, borderTop: '3px solid #60a5fa', borderLeft: '3px solid #60a5fa' }} />
-                <Box sx={{ position: 'absolute', top: -2, right: -2, width: 18, height: 18, borderTop: '3px solid #60a5fa', borderRight: '3px solid #60a5fa' }} />
-                <Box sx={{ position: 'absolute', bottom: -2, left: -2, width: 18, height: 18, borderBottom: '3px solid #60a5fa', borderLeft: '3px solid #60a5fa' }} />
-                <Box sx={{ position: 'absolute', bottom: -2, right: -2, width: 18, height: 18, borderBottom: '3px solid #60a5fa', borderRight: '3px solid #60a5fa' }} />
-              </Box>
-              {/* Hint */}
-              <Box sx={{ position: 'absolute', bottom: 14, left: '50%', transform: 'translateX(-50%)', backgroundColor: 'rgba(0,0,0,0.6)', borderRadius: '20px', px: 2.5, py: 0.875, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <QrCodeScannerIcon sx={{ fontSize: 13, color: '#93c5fd' }} />
-                <Typography sx={{ color: '#d1d5db', fontSize: '0.8125rem' }}>Position barcode within frame...</Typography>
-              </Box>
+              {scanning ? (
+                <Box sx={{ width: '100%', height: '100%', overflow: 'hidden' }}>
+                  <Box id="reader" sx={{ width: '100%', height: '100%', border: 'none', '& video': { width: '100% !important', height: '100% !important', objectFit: 'cover' } }} />
+                </Box>
+              ) : (
+                <Box sx={{ textAlign: 'center' }}>
+                  <Typography sx={{ fontSize: '5rem', mb: 2 }}>📷</Typography>
+                  <Button 
+                    variant="contained" 
+                    onClick={() => setScanning(true)}
+                    sx={{ backgroundColor: '#3b82f6', borderRadius: '8px', textTransform: 'none', fontWeight: 600, px: 3, py: 1, '&:hover': { backgroundColor: '#2563eb' } }}
+                  >
+                    Start Camera
+                  </Button>
+                </Box>
+              )}
             </Box>
           </Card>
 
