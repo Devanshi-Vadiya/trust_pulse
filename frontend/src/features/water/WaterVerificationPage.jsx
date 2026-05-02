@@ -3,7 +3,7 @@ import { Box, Typography, Button, Card, CardContent, Divider, LinearProgress, Te
 import { Share as ShareIcon, Download as DownloadIcon, CheckCircle as CheckIcon, LocationOn as LocationIcon, Search as SearchIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import { useSnackbar } from 'notistack';
-import apiClient from '../../../services/api';
+import apiClient from '../../services/api';
 
 const TDSGauge = ({ value }) => {
   const pct = Math.min(value / 500, 1);

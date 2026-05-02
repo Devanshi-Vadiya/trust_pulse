@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Box, Typography, TextField, Button, Card, CardContent, IconButton, Divider, CircularProgress } from '@mui/material';
 import { Search as SearchIcon, Download as DownloadIcon, CheckCircle as CheckIcon, Cancel as CancelIcon, Warning as WarnIcon } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
-import apiClient from '../../../services/api';
+import apiClient from '../../services/api';
 
 const custodyHistory = [
   { date: 'Today, 14:32 UTC', type: 'Consumer Scan', location: 'Berlin, DE', actor: 'Mobile App User', status: 'Cloned Scan', statusType: 'cloned' },
@@ -103,9 +103,11 @@ const AlcoholVerificationPage = () => {
               </Box>
             </CardContent>
           </Card>
+          )}
         </Box>
 
         {/* Right */}
+        {scanned && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
           {/* Product card */}
           <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px', overflow: 'hidden' }}>
@@ -169,8 +171,8 @@ const AlcoholVerificationPage = () => {
             </CardContent>
           </Card>
         </Box>
+        )}
       </Box>
-      )}
     </Box>
   );
 };
