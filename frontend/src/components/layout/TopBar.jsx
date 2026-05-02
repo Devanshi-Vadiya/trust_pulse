@@ -6,9 +6,12 @@ import {
   SettingsOutlined as SettingsOutlinedIcon 
 } from '@mui/icons-material';
 import { useAuth } from '../../hooks/useAuth';
+import { useDispatch } from 'react-redux';
+import { toggleTheme } from '../../store/slices/uiSlice';
 
 const TopBar = ({ titleText, activeTab }) => {
   const { user } = useAuth();
+  const dispatch = useDispatch();
   
   return (
     <Box className="h-16 px-6 flex items-center justify-between border-b border-gray-200 bg-white/80 backdrop-blur-md sticky top-0 z-10 w-full">
@@ -55,7 +58,7 @@ const TopBar = ({ titleText, activeTab }) => {
           <NotificationsNoneIcon fontSize="small" />
         </IconButton>
         
-        <IconButton size="small" className="text-gray-500 hover:bg-gray-100">
+        <IconButton size="small" className="text-gray-500 hover:bg-gray-100" onClick={() => dispatch(toggleTheme())}>
           <ContrastIcon fontSize="small" />
         </IconButton>
 

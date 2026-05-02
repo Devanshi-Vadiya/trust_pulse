@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux';
 import { useState } from 'react';
 import { Box, Typography, TextField, Card, CardContent, IconButton, CircularProgress, Chip, LinearProgress } from '@mui/material';
 import { Search as SearchIcon, CheckCircle as CheckIcon, WaterDrop as WaterIcon } from '@mui/icons-material';
@@ -53,6 +54,8 @@ const getNutrientValue = (nutrients, key) => {
 };
 
 const WaterVerificationPage = () => {
+  const themeMode = useSelector((state) => state.ui.themeMode);
+  const isLight = themeMode === 'light';
   const [code, setCode] = useState('');
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState(null);
@@ -113,8 +116,8 @@ const WaterVerificationPage = () => {
     <Box sx={{ p: { xs: 2, md: 3 }, fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <Box sx={{ mb: 3 }}>
-        <Typography sx={{ fontWeight: 700, fontSize: '1.75rem', color: '#111827' }}>Water Verification Report</Typography>
-        <Typography sx={{ color: '#6b7280', fontSize: '0.9375rem' }}>Enter a product barcode to verify water brand safety and quality.</Typography>
+        <Typography sx={{ fontWeight: 700, fontSize: '1.75rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>Water Verification Report</Typography>
+        <Typography sx={{ color: isLight ? '#6b7280' : '#94a3b8', fontSize: '0.9375rem' }}>Enter a product barcode to verify water brand safety and quality.</Typography>
       </Box>
 
       {/* Search */}
@@ -122,9 +125,9 @@ const WaterVerificationPage = () => {
         <CardContent sx={{ p: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 0.75 }}>
             <Box sx={{ fontSize: '1.125rem' }}>⊞</Box>
-            <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: '#111827' }}>Manual Batch Entry</Typography>
+            <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>Manual Batch Entry</Typography>
           </Box>
-          <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280', mb: 2 }}>
+          <Typography sx={{ fontSize: '0.8125rem', color: isLight ? '#6b7280' : '#94a3b8', mb: 2 }}>
             Try: <strong>3068320114444</strong> (Evian) · <strong>3057640117107</strong> (Volvic) · <strong>5000112548167</strong> (Buxton)
           </Typography>
           <Box sx={{ display: 'flex', gap: 1.5 }}>
@@ -132,11 +135,11 @@ const WaterVerificationPage = () => {
               fullWidth size="small" placeholder="e.g. 3068320114444"
               value={code} onChange={(e) => setCode(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleScan()}
-              sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', fontFamily: 'monospace', fontSize: '0.9375rem', '& fieldset': { borderColor: '#e5e7eb' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
+              sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', fontFamily: 'monospace', fontSize: '0.9375rem', '& fieldset': { borderColor: isLight ? '#e5e7eb' : '#334155' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
             />
             <IconButton onClick={handleScan} disabled={loading}
-              sx={{ backgroundColor: '#1d4ed8', color: '#fff', borderRadius: '8px', width: 42, height: 42, flexShrink: 0, '&:hover': { backgroundColor: '#1e40af' } }}>
-              {loading ? <CircularProgress size={20} sx={{ color: '#fff' }} /> : <SearchIcon sx={{ fontSize: 18 }} />}
+              sx={{ backgroundColor: isLight ? '#1d4ed8' : '#60a5fa', color: isLight ? '#fff' : '#1e293b', borderRadius: '8px', width: 42, height: 42, flexShrink: 0, '&:hover': { backgroundColor: isLight ? '#1e40af' : '#3b82f6' } }}>
+              {loading ? <CircularProgress size={20} sx={{ color: isLight ? '#fff' : '#1e293b' }} /> : <SearchIcon sx={{ fontSize: 18 }} />}
             </IconButton>
           </Box>
         </CardContent>
@@ -153,22 +156,22 @@ const WaterVerificationPage = () => {
               <CardContent sx={{ p: 3 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
                   <Box>
-                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 0.5 }}>OVERALL STATUS</Typography>
-                    <Typography sx={{ fontWeight: 700, fontSize: '1.25rem', color: '#111827' }}>{product.brand}</Typography>
+                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em', mb: 0.5 }}>OVERALL STATUS</Typography>
+                    <Typography sx={{ fontWeight: 700, fontSize: '1.25rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>{product.brand}</Typography>
                   </Box>
-                  <Box sx={{ backgroundColor: '#dcfce7', borderRadius: '6px', px: 1.5, py: 0.5 }}>
-                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#15803d' }}>VERIFIED</Typography>
+                  <Box sx={{ backgroundColor: isLight ? '#dcfce7' : '#064e3b', borderRadius: '6px', px: 1.5, py: 0.5 }}>
+                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#15803d' : '#4ade80' }}>VERIFIED</Typography>
                   </Box>
                 </Box>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
-                  <Box sx={{ width: 64, height: 64, borderRadius: '14px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, overflow: 'hidden' }}>
+                  <Box sx={{ width: 64, height: 64, borderRadius: '14px', backgroundColor: isLight ? '#eff6ff' : '#1e3a8a', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, overflow: 'hidden' }}>
                     {product.imageUrl
                       ? <Box component="img" src={product.imageUrl} alt={product.name} sx={{ maxHeight: 56, maxWidth: 56, objectFit: 'contain' }} />
-                      : <WaterIcon sx={{ fontSize: 36, color: '#1d4ed8' }} />}
+                      : <WaterIcon sx={{ fontSize: 36, color: isLight ? '#1d4ed8' : '#60a5fa' }} />}
                   </Box>
                   <Box>
-                    <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: '#1d4ed8', mb: 0.5 }}>{product.overallStatus}</Typography>
-                    <Typography sx={{ fontSize: '0.875rem', color: '#374151', lineHeight: 1.6 }}>
+                    <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: isLight ? '#1d4ed8' : '#60a5fa', mb: 0.5 }}>{product.overallStatus}</Typography>
+                    <Typography sx={{ fontSize: '0.875rem', color: isLight ? '#374151' : '#cbd5e1', lineHeight: 1.6 }}>
                       {product.name}. Barcode confirmed in Open Food Facts global database.
                     </Typography>
                   </Box>
@@ -181,8 +184,8 @@ const WaterVerificationPage = () => {
               <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
                 <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em' }}>DETAILED CHEMICAL ANALYSIS</Typography>
-                    <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>Per 100ml</Typography>
+                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em' }}>DETAILED CHEMICAL ANALYSIS</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', color: isLight ? '#9ca3af' : '#64748b' }}>Per 100ml</Typography>
                   </Box>
                   <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 1.5 }}>
                     {[
@@ -194,12 +197,12 @@ const WaterVerificationPage = () => {
                       <Box key={c.label} sx={{ border: '1px solid #e5e7eb', borderRadius: '10px', p: 1.75 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 0.5 }}>
                           <Box>
-                            <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{c.label}</Typography>
-                            <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>{c.target}</Typography>
+                            <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>{c.label}</Typography>
+                            <Typography sx={{ fontSize: '0.75rem', color: isLight ? '#9ca3af' : '#64748b' }}>{c.target}</Typography>
                           </Box>
                           <Box>
-                            <Typography sx={{ fontWeight: 700, fontSize: '0.9375rem', color: '#111827', textAlign: 'right' }}>{c.value}</Typography>
-                            <Typography sx={{ fontSize: '0.6875rem', fontWeight: 700, color: '#16a34a', textAlign: 'right' }}>SAFE</Typography>
+                            <Typography sx={{ fontWeight: 700, fontSize: '0.9375rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a', textAlign: 'right' }}>{c.value}</Typography>
+                            <Typography sx={{ fontSize: '0.6875rem', fontWeight: 700, color: isLight ? '#16a34a' : '#4ade80', textAlign: 'right' }}>SAFE</Typography>
                           </Box>
                         </Box>
                       </Box>
@@ -212,8 +215,8 @@ const WaterVerificationPage = () => {
             {product.ingredients && (
               <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 1.5 }}>SOURCE DESCRIPTION</Typography>
-                  <Typography sx={{ fontSize: '0.875rem', color: '#374151', lineHeight: 1.7 }}>{product.ingredients}</Typography>
+                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em', mb: 1.5 }}>SOURCE DESCRIPTION</Typography>
+                  <Typography sx={{ fontSize: '0.875rem', color: isLight ? '#374151' : '#cbd5e1', lineHeight: 1.7 }}>{product.ingredients}</Typography>
                 </CardContent>
               </Card>
             )}
@@ -224,18 +227,18 @@ const WaterVerificationPage = () => {
             {/* Trust Score */}
             <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
               <CardContent sx={{ p: 2.5 }}>
-                <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 2 }}>DATABASE TRUST SCORE</Typography>
+                <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em', mb: 2 }}>DATABASE TRUST SCORE</Typography>
                 <Box sx={{ border: '1px solid #e5e7eb', borderRadius: '10px', p: 2, mb: 2 }}>
                   <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 1 }}>
-                    <Typography sx={{ fontSize: '0.875rem', color: '#6b7280' }}>Trust Score</Typography>
-                    <Typography sx={{ fontWeight: 800, fontSize: '1.125rem', color: '#1d4ed8' }}>98<span style={{ color: '#9ca3af', fontWeight: 500, fontSize: '0.875rem' }}>/100</span></Typography>
+                    <Typography sx={{ fontSize: '0.875rem', color: isLight ? '#6b7280' : '#94a3b8' }}>Trust Score</Typography>
+                    <Typography sx={{ fontWeight: 800, fontSize: '1.125rem', color: isLight ? '#1d4ed8' : '#60a5fa' }}>98<span style={{ color: isLight ? '#9ca3af' : '#64748b', fontWeight: 500, fontSize: '0.875rem' }}>/100</span></Typography>
                   </Box>
-                  <LinearProgress variant="determinate" value={98} sx={{ height: 6, borderRadius: 3, backgroundColor: '#e5e7eb', '& .MuiLinearProgress-bar': { backgroundColor: '#1d4ed8', borderRadius: 3 } }} />
+                  <LinearProgress variant="determinate" value={98} sx={{ height: 6, borderRadius: 3, backgroundColor: isLight ? '#e5e7eb' : '#334155', '& .MuiLinearProgress-bar': { backgroundColor: isLight ? '#1d4ed8' : '#60a5fa', borderRadius: 3 } }} />
                 </Box>
                 {[{ icon: '✓', text: 'Open Food Facts Verified' }, { icon: '✓', text: 'Barcode Authenticated' }, { icon: '✓', text: 'No Contaminants Flagged' }].map((item, i) => (
                   <Box key={i} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                    <Typography sx={{ fontSize: '0.875rem', color: '#16a34a' }}>{item.icon}</Typography>
-                    <Typography sx={{ fontSize: '0.875rem', color: '#374151' }}>{item.text}</Typography>
+                    <Typography sx={{ fontSize: '0.875rem', color: isLight ? '#16a34a' : '#4ade80' }}>{item.icon}</Typography>
+                    <Typography sx={{ fontSize: '0.875rem', color: isLight ? '#374151' : '#cbd5e1' }}>{item.text}</Typography>
                   </Box>
                 ))}
               </CardContent>
@@ -244,10 +247,10 @@ const WaterVerificationPage = () => {
             {product.labels && product.labels.length > 0 && (
               <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
                 <CardContent sx={{ p: 2.5 }}>
-                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 2 }}>PRODUCT LABELS</Typography>
+                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em', mb: 2 }}>PRODUCT LABELS</Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                     {product.labels.slice(0, 8).map((label, i) => (
-                      <Chip key={i} label={label} size="small" sx={{ backgroundColor: '#eff6ff', color: '#1d4ed8', fontWeight: 600, fontSize: '0.6875rem' }} />
+                      <Chip key={i} label={label} size="small" sx={{ backgroundColor: isLight ? '#eff6ff' : '#1e3a8a', color: isLight ? '#1d4ed8' : '#60a5fa', fontWeight: 600, fontSize: '0.6875rem' }} />
                     ))}
                   </Box>
                 </CardContent>
@@ -256,11 +259,11 @@ const WaterVerificationPage = () => {
 
             <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
               <CardContent sx={{ p: 2.5 }}>
-                <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 2 }}>SCAN DETAILS</Typography>
+                <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em', mb: 2 }}>SCAN DETAILS</Typography>
                 {[['Barcode', product.barcode], ['Brand', product.brand || 'Unknown'], ['Category', product.category?.split(',')[0] || 'Water'], ['Countries', product.countries?.split(',')[0] || 'Global']].map(([k, v]) => (
                   <Box key={k} sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
-                    <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280' }}>{k}</Typography>
-                    <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#111827', textAlign: 'right', maxWidth: '55%' }}>{v}</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', color: isLight ? '#6b7280' : '#94a3b8' }}>{k}</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a', textAlign: 'right', maxWidth: '55%' }}>{v}</Typography>
                   </Box>
                 ))}
               </CardContent>
