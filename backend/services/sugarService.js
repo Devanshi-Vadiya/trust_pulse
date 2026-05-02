@@ -1,5 +1,6 @@
 import axios from 'axios';
 import env from '../config/env.js';
+import AppError from '../utils/AppError.js';
 
 /**
  * Sugar Service — integrates with Open Food Facts API.
@@ -27,8 +28,7 @@ export const fetchSugarDataByBarcode = async (barcode) => {
     const response = await axios.get(url, { timeout: 8000 });
 
     if (response.data.status === 0 || !response.data.product) {
-      // Product not found in Open Food Facts — use fallback
-      return getFallbackData(barcode);
+      throw new AppError('Product not found. The barcode may be incorrect or not in our database.', 404);
     }
 
     const product = response.data.product;
@@ -61,8 +61,9 @@ export const fetchSugarDataByBarcode = async (barcode) => {
       source: 'openfoodfacts',
     };
   } catch (error) {
+    if (error instanceof AppError) throw error;
     console.warn(`⚠️  Open Food Facts API failed for barcode ${barcode}:`, error.message);
-    return getFallbackData(barcode);
+    throw new AppError('Verification service is temporarily unavailable. Please try again.', 503);
   }
 };
 

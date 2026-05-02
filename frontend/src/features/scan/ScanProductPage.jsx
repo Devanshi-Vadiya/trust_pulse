@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Html5QrcodeScanner } from 'html5-qrcode';
-import { Box, Typography, TextField, Button, Card, CardContent, Avatar } from '@mui/material';
+import { Box, Typography, TextField, Button, Card, CardContent, Avatar, CircularProgress } from '@mui/material';
 import { QrCodeScanner as QrCodeScannerIcon, Search as SearchIcon, CheckCircle as CheckCircleIcon, Warning as WarningIcon, Cancel as CancelIcon, HelpOutlined as HelpIcon, ZoomOutMap as ExpandIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import apiClient from '../../services/api';
 
 const recentScans = [
   { id: 1, name: 'DermaProtect Daily Lotion', upc: '08523940211', status: 'CLINICALLY SAFE', statusColor: '#16a34a', statusBg: '#dcfce7', icon: '🧴', statusIcon: 'check' },
@@ -22,7 +24,9 @@ const StatusIcon = ({ type }) => {
 const ScanProductPage = () => {
   const [code, setCode] = useState('');
   const [scanning, setScanning] = useState(false);
+  const [isVerifying, setIsVerifying] = useState(false);
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
 
   useEffect(() => {
     if (scanning) {
@@ -49,7 +53,27 @@ const ScanProductPage = () => {
     }
   }, [scanning]);
 
-  const handleVerify = () => { if (code.trim()) navigate('/product/sample'); };
+  const handleVerify = async () => { 
+    if (!code.trim()) return;
+    
+    setIsVerifying(true);
+    try {
+      // Calls the real Open Food Facts backend integration
+      const response = await apiClient.post('/sugar/scan', { barcode: code.trim() });
+      const productData = response.data.data;
+      
+      enqueueSnackbar(`Verified: ${productData.name} - ${productData.sugar}g Sugar`, { variant: 'success' });
+      navigate('/sugar-tracker');
+    } catch (err) {
+      if (err.response?.status === 404) {
+        navigate('/product/not-found', { state: { notFound: true, searchedCode: code.trim() } });
+      } else {
+        enqueueSnackbar(err.response?.data?.message || 'Verification failed. Try another code.', { variant: 'error' });
+      }
+    } finally {
+      setIsVerifying(false);
+    }
+  };
 
   return (
     <Box sx={{ p: { xs: 2, md: 3 }, fontFamily: 'Inter, sans-serif' }}>
@@ -110,9 +134,9 @@ const ScanProductPage = () => {
                   value={code} onChange={(e) => setCode(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleVerify()}
                   sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', '& fieldset': { borderColor: '#e5e7eb' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
                 />
-                <Button variant="contained" startIcon={<SearchIcon />} onClick={handleVerify}
+                <Button variant="contained" onClick={handleVerify} disabled={isVerifying}
                   sx={{ backgroundColor: '#1d4ed8', textTransform: 'none', fontWeight: 600, borderRadius: '8px', px: 3, whiteSpace: 'nowrap', '&:hover': { backgroundColor: '#1e40af' } }}>
-                  Verify Code
+                  {isVerifying ? <CircularProgress size={24} sx={{ color: '#fff' }} /> : <><SearchIcon sx={{ mr: 1 }} /> Verify Code</>}
                 </Button>
               </Box>
             </CardContent>
