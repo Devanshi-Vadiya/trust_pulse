@@ -54,17 +54,14 @@ const WaterVerificationPage = () => {
     setScanned(false);
     
     try {
-      const response = await apiClient.post('/water/verify', { batchId: query.trim() });
+      // Utilizing the Open Food Facts global API route
+      const response = await apiClient.post('/sugar/scan', { barcode: query.trim() });
       const data = response.data.data;
       
-      if (data.found) {
-        enqueueSnackbar(`Verified Batch: ${data.batchId} - ${data.overallStatus}`, { variant: 'success' });
-        setScanned(true);
-      } else {
-         enqueueSnackbar('Batch ID not found in our verification database.', { variant: 'error' });
-      }
+      enqueueSnackbar(`Recognized: ${data.brand || 'Unknown'} - ${data.name}`, { variant: 'success' });
+      setScanned(true);
     } catch (err) {
-      enqueueSnackbar(err.response?.data?.message || 'Verification failed. Try another code.', { variant: 'error' });
+      enqueueSnackbar('Water brand/barcode not found in global database.', { variant: 'error' });
     } finally {
       setLoading(false);
     }
