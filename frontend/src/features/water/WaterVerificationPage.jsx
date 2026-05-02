@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Box, Typography, TextField, Card, CardContent, IconButton, Divider, CircularProgress, Chip, LinearProgress } from '@mui/material';
 import { Search as SearchIcon, CheckCircle as CheckIcon, WaterDrop as WaterIcon } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
-import apiClient from '../../services/api';
 
 const getNutrientValue = (nutrients, key) => {
   if (!nutrients) return 'N/A';
@@ -22,12 +21,34 @@ const WaterVerificationPage = () => {
     setProduct(null);
 
     try {
-      const response = await apiClient.post('/sugar/scan', { barcode: code.trim() });
-      const data = response.data.data;
+      const res = await fetch(
+        `https://world.openfoodfacts.org/api/v2/product/${code.trim()}.json`
+      );
+      const json = await res.json();
+
+      if (json.status === 0 || !json.product) {
+        enqueueSnackbar('Product barcode not found in global database.', { variant: 'error' });
+        return;
+      }
+
+      const p = json.product;
+      const data = {
+        name: p.product_name || p.product_name_en || 'Unknown Product',
+        brand: p.brands || '',
+        ingredients: p.ingredients_text || p.ingredients_text_en || '',
+        imageUrl: p.image_url || p.image_front_url || '',
+        category: p.categories || '',
+        countries: p.countries || '',
+        servingSize: p.serving_size || '',
+        labels: p.labels ? p.labels.split(',').map(l => l.trim()).filter(Boolean) : [],
+        nutrients: p.nutriments || null,
+        barcode: code.trim(),
+      };
+
       setProduct(data);
       enqueueSnackbar(`Verified: ${data.brand || ''} ${data.name}`, { variant: 'success' });
     } catch (err) {
-      enqueueSnackbar('Product barcode not found in global database.', { variant: 'error' });
+      enqueueSnackbar('Could not reach global database. Check your connection.', { variant: 'error' });
     } finally {
       setLoading(false);
     }
