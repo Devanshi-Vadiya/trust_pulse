@@ -32,15 +32,15 @@ const Sidebar = () => {
   };
 
   return (
-    <Box className="w-64 h-screen flex flex-col border-r border-gray-100 bg-white flex-shrink-0 relative">
+    <Box className="w-64 h-screen flex flex-col border-r border-gray-100 dark:border-slate-800 bg-white dark:bg-slate-950 flex-shrink-0 relative">
       {/* Header Logo */}
       <Box className="p-8 flex items-center gap-3">
         <Box className="w-10 h-10 rounded-xl bg-primary-600 flex items-center justify-center text-white shadow-lg shadow-primary-500/30">
           <SecurityIcon fontSize="medium" />
         </Box>
         <Box>
-          <Typography className="font-bold text-gray-900 text-lg leading-tight">TrustPulse AI</Typography>
-          <Typography variant="caption" className="text-gray-400 font-medium">Clinical Precision Engine</Typography>
+          <Typography className="font-bold text-gray-900 dark:text-white text-lg leading-tight">TrustPulse AI</Typography>
+          <Typography variant="caption" className="text-gray-400 dark:text-slate-500 font-medium">Clinical Precision Engine</Typography>
         </Box>
       </Box>
 
@@ -94,8 +94,8 @@ const Sidebar = () => {
 
       {/* Footer Navigation */}
       <Box className="p-6">
-        <Box className="p-5 rounded-2xl bg-gray-50 mb-6">
-          <Typography className="text-gray-900 font-bold text-sm mb-3">Get advanced clinical insights.</Typography>
+        <Box className="p-5 rounded-2xl bg-gray-50 dark:bg-slate-900 mb-6">
+          <Typography className="text-gray-900 dark:text-white font-bold text-sm mb-3">Get advanced clinical insights.</Typography>
           <Button 
             variant="contained" 
             fullWidth 
@@ -109,24 +109,24 @@ const Sidebar = () => {
         
         <List dense disablePadding>
           <ListItem disablePadding>
-            <ListItemButton className="rounded-lg text-gray-500 py-2">
-              <ListItemIcon className="min-w-[36px] text-gray-400">
+            <ListItemButton className="rounded-lg text-gray-500 dark:text-slate-400 py-2">
+              <ListItemIcon className="min-w-[36px] text-gray-400 dark:text-slate-500">
                 <HelpOutlineIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText primary="Help Center" primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 500 }} />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton className="rounded-lg text-gray-500 py-2">
-              <ListItemIcon className="min-w-[36px] text-gray-400">
+            <ListItemButton className="rounded-lg text-gray-500 dark:text-slate-400 py-2">
+              <ListItemIcon className="min-w-[36px] text-gray-400 dark:text-slate-500">
                 <PrivacyTipIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText primary="Privacy" primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 500 }} />
             </ListItemButton>
           </ListItem>
           <ListItem disablePadding>
-            <ListItemButton onClick={handleLogout} className="rounded-lg text-gray-500 py-2 mt-1">
-              <ListItemIcon className="min-w-[36px] text-gray-400">
+            <ListItemButton onClick={handleLogout} className="rounded-lg text-gray-500 dark:text-slate-400 py-2 mt-1">
+              <ListItemIcon className="min-w-[36px] text-gray-400 dark:text-slate-500">
                 <LogoutIcon fontSize="small" />
               </ListItemIcon>
               <ListItemText primary="Logout" primaryTypographyProps={{ fontSize: '0.875rem', fontWeight: 500 }} />

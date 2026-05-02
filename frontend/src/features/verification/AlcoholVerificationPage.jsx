@@ -6,7 +6,7 @@ import PageSEO from '../../components/PageSEO';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import AppCard from '../../components/AppCard';
-import { Box, Typography, CardContent, LinearProgress } from '@mui/material';
+import { Box, Typography, CardContent, LinearProgress } , useTheme } from '@mui/material';
 import { Search as SearchIcon, CheckCircle, Warning, LocalBar } from '@mui/icons-material';
 
 const standards = [
@@ -54,8 +54,8 @@ const AlcoholVerificationPage = () => {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [scanned, setScanned] = useState(false);
-  const themeMode = useSelector((state) => state.ui.themeMode);
-  const isLight = themeMode === 'light';
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
   const { enqueueSnackbar } = useSnackbar();
   const t = (light, dark) => (isLight ? light : dark);
 
@@ -94,11 +94,11 @@ const AlcoholVerificationPage = () => {
       >
         <Box sx={{ mb: 3 }}>
           <Typography
-            sx={{ fontWeight: 700, fontSize: '1.75rem', color: t('#111827', '#f8fafc'), mb: 0.5 }}
+            sx={{ fontWeight: 700, fontSize: '1.75rem', color: 'text.primary', mb: 0.5 }}
           >
             Alcohol Safety Verification
           </Typography>
-          <Typography sx={{ color: t('#6b7280', '#94a3b8'), fontSize: '0.9375rem' }}>
+          <Typography sx={{ color: 'text.secondary', fontSize: '0.9375rem' }}>
             Verify alcohol content and purity against global regulatory standards.
           </Typography>
         </Box>
@@ -108,7 +108,7 @@ const AlcoholVerificationPage = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
               <LocalBar sx={{ color: '#7c3aed', fontSize: 20 }} />
               <Typography
-                sx={{ fontWeight: 600, fontSize: '1rem', color: t('#111827', '#f8fafc') }}
+                sx={{ fontWeight: 600, fontSize: '1rem', color: 'text.primary' }}
               >
                 Enter Product Name or Batch Code
               </Typography>
@@ -166,7 +166,7 @@ const AlcoholVerificationPage = () => {
                 {
                   label: 'Standards Checked',
                   value: `${standards.length}`,
-                  color: t('#111827', '#f8fafc'),
+                  color: 'text.primary',
                 },
                 {
                   label: 'Cautions',
@@ -177,7 +177,7 @@ const AlcoholVerificationPage = () => {
                 <AppCard key={label} elevation={0}>
                   <CardContent sx={{ p: 2.5 }}>
                     <Typography
-                      sx={{ fontSize: '0.8125rem', color: t('#9ca3af', '#64748b'), mb: 0.5 }}
+                      sx={{ fontSize: '0.8125rem', color: 'text.secondary', mb: 0.5 }}
                     >
                       {label}
                     </Typography>
@@ -195,7 +195,7 @@ const AlcoholVerificationPage = () => {
                   sx={{
                     fontWeight: 700,
                     fontSize: '1.0625rem',
-                    color: t('#111827', '#f8fafc'),
+                    color: 'text.primary',
                     mb: 2,
                   }}
                 >
@@ -238,7 +238,7 @@ const AlcoholVerificationPage = () => {
                               sx={{
                                 fontWeight: 600,
                                 fontSize: '0.9375rem',
-                                color: t('#111827', '#f8fafc'),
+                                color: 'text.primary',
                               }}
                             >
                               {s.name}
@@ -249,13 +249,13 @@ const AlcoholVerificationPage = () => {
                               sx={{
                                 fontWeight: 700,
                                 fontSize: '0.9375rem',
-                                color: t('#111827', '#f8fafc'),
+                                color: 'text.primary',
                               }}
                             >
                               {s.value}
                             </Typography>
                             <Typography
-                              sx={{ fontSize: '0.75rem', color: t('#9ca3af', '#64748b') }}
+                              sx={{ fontSize: '0.75rem', color: 'text.secondary' }}
                             >
                               Limit: {s.safe}
                             </Typography>

@@ -6,7 +6,7 @@ import PageSEO from '../../components/PageSEO';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import AppCard from '../../components/AppCard';
-import { Box, Typography, CardContent, LinearProgress } from '@mui/material';
+import { Box, Typography, CardContent, LinearProgress, useTheme } from '@mui/material';
 import { Search as SearchIcon, CheckCircle, Warning, WaterDrop } from '@mui/icons-material';
 
 const parameters = [
@@ -43,8 +43,8 @@ const WaterVerificationPage = () => {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [scanned, setScanned] = useState(false);
-  const themeMode = useSelector((state) => state.ui.themeMode);
-  const isLight = themeMode === 'light';
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
   const { enqueueSnackbar } = useSnackbar();
   const t = (light, dark) => (isLight ? light : dark);
 
@@ -83,11 +83,11 @@ const WaterVerificationPage = () => {
       >
         <Box sx={{ mb: 3 }}>
           <Typography
-            sx={{ fontWeight: 700, fontSize: '1.75rem', color: t('#111827', '#f8fafc'), mb: 0.5 }}
+            sx={{ fontWeight: 700, fontSize: '1.75rem', color: 'text.primary', mb: 0.5 }}
           >
             Water Purity Analysis
           </Typography>
-          <Typography sx={{ color: t('#6b7280', '#94a3b8'), fontSize: '0.9375rem' }}>
+          <Typography sx={{ color: 'text.secondary', fontSize: '0.9375rem' }}>
             Verify drinking water safety against WHO and EPA standards.
           </Typography>
         </Box>
@@ -97,7 +97,7 @@ const WaterVerificationPage = () => {
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 2 }}>
               <WaterDrop sx={{ color: '#0ea5e9', fontSize: 20 }} />
               <Typography
-                sx={{ fontWeight: 600, fontSize: '1rem', color: t('#111827', '#f8fafc') }}
+                sx={{ fontWeight: 600, fontSize: '1rem', color: 'text.primary' }}
               >
                 Enter Water Source / Batch ID
               </Typography>
@@ -155,7 +155,7 @@ const WaterVerificationPage = () => {
                 {
                   label: 'Parameters Tested',
                   value: `${parameters.length}`,
-                  color: t('#111827', '#f8fafc'),
+                  color: 'text.primary',
                 },
                 {
                   label: 'Alerts',
@@ -166,7 +166,7 @@ const WaterVerificationPage = () => {
                 <AppCard key={label} elevation={0}>
                   <CardContent sx={{ p: 2.5 }}>
                     <Typography
-                      sx={{ fontSize: '0.8125rem', color: t('#9ca3af', '#64748b'), mb: 0.5 }}
+                      sx={{ fontSize: '0.8125rem', color: 'text.secondary', mb: 0.5 }}
                     >
                       {label}
                     </Typography>
@@ -184,7 +184,7 @@ const WaterVerificationPage = () => {
                   sx={{
                     fontWeight: 700,
                     fontSize: '1.0625rem',
-                    color: t('#111827', '#f8fafc'),
+                    color: 'text.primary',
                     mb: 2,
                   }}
                 >
@@ -227,7 +227,7 @@ const WaterVerificationPage = () => {
                               sx={{
                                 fontWeight: 600,
                                 fontSize: '0.9375rem',
-                                color: t('#111827', '#f8fafc'),
+                                color: 'text.primary',
                               }}
                             >
                               {p.name}
@@ -238,13 +238,13 @@ const WaterVerificationPage = () => {
                               sx={{
                                 fontWeight: 700,
                                 fontSize: '0.9375rem',
-                                color: t('#111827', '#f8fafc'),
+                                color: 'text.primary',
                               }}
                             >
                               {p.value} {p.unit}
                             </Typography>
                             <Typography
-                              sx={{ fontSize: '0.75rem', color: t('#9ca3af', '#64748b') }}
+                              sx={{ fontSize: '0.75rem', color: 'text.secondary' }}
                             >
                               Safe: {p.safe}
                             </Typography>

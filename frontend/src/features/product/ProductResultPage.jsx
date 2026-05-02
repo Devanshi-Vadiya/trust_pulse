@@ -35,8 +35,8 @@ const DonutChart = () => {
           ))}
         </svg>
         <Box sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', textAlign: 'center' }}>
-          <Typography sx={{ fontWeight: 700, fontSize: '1.1rem', color: '#111827' }}>ACTIVE</Typography>
-          <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: '#111827' }}>65%</Typography>
+          <Typography sx={{ fontWeight: 700, fontSize: '1.1rem', color: 'text.primary' }}>ACTIVE</Typography>
+          <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: 'text.primary' }}>65%</Typography>
         </Box>
       </Box>
       <Box sx={{ flex: 1 }}>
@@ -45,11 +45,11 @@ const DonutChart = () => {
             <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
               <Box sx={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: arc.color, mt: 0.5, flexShrink: 0 }} />
               <Box>
-                <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827' }}>{arc.label}</Typography>
-                <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>{arc.detail}</Typography>
+                <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary' }}>{arc.label}</Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>{arc.detail}</Typography>
               </Box>
             </Box>
-            <Typography sx={{ fontSize: '0.9375rem', fontWeight: 700, color: '#111827', ml: 2 }}>{arc.pct}%</Typography>
+            <Typography sx={{ fontSize: '0.9375rem', fontWeight: 700, color: 'text.primary', ml: 2 }}>{arc.pct}%</Typography>
           </Box>
         ))}
       </Box>
@@ -73,10 +73,10 @@ const ProductResultPage = () => {
     <Box sx={{ p: { xs: 2, md: 3 }, fontFamily: 'Inter, sans-serif' }}>
       {/* Breadcrumb */}
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2.5, cursor: 'pointer' }} onClick={() => navigate('/scan')}>
-        <ArrowBackIcon sx={{ fontSize: 16, color: '#6b7280' }} />
-        <Typography sx={{ fontSize: '0.875rem', color: '#6b7280' }}>Back to Search</Typography>
-        <Typography sx={{ fontSize: '0.875rem', color: '#9ca3af' }}>/</Typography>
-        <Typography sx={{ fontSize: '0.875rem', color: '#374151', fontWeight: 500 }}>Nutrition & Supplements</Typography>
+        <ArrowBackIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+        <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>Back to Search</Typography>
+        <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>/</Typography>
+        <Typography sx={{ fontSize: '0.875rem', color: 'text.primary', fontWeight: 500 }}>Nutrition & Supplements</Typography>
       </Box>
 
       {/* Main grid */}
@@ -87,11 +87,11 @@ const ProductResultPage = () => {
             <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
               <CardContent sx={{ p: 6, textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Box sx={{ width: 80, height: 80, borderRadius: '50%', backgroundColor: '#f3f4f6', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 3 }}>
-                  <SearchOffIcon sx={{ fontSize: 40, color: '#9ca3af' }} />
+                  <SearchOffIcon sx={{ fontSize: 40, color: 'text.secondary' }} />
                 </Box>
-                <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: '#111827', mb: 1 }}>Product Not Found</Typography>
-                <Typography sx={{ color: '#6b7280', mb: 4, maxWidth: 400, mx: 'auto', lineHeight: 1.6 }}>
-                  We couldn't find any clinical data for the barcode <Typography component="span" sx={{ fontWeight: 700, color: '#374151' }}>"{searchedCode}"</Typography>. It may be unverified or not exist in our global ledger.
+                <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: 'text.primary', mb: 1 }}>Product Not Found</Typography>
+                <Typography sx={{ color: 'text.secondary', mb: 4, maxWidth: 400, mx: 'auto', lineHeight: 1.6 }}>
+                  We couldn't find any clinical data for the barcode <Typography component="span" sx={{ fontWeight: 700, color: 'text.primary' }}>"{searchedCode}"</Typography>. It may be unverified or not exist in our global ledger.
                 </Typography>
                 <Button variant="contained" onClick={() => navigate('/scan')}
                   sx={{ backgroundColor: '#1d4ed8', textTransform: 'none', fontWeight: 600, borderRadius: '8px', px: 4, py: 1.2, '&:hover': { backgroundColor: '#1e40af' } }}>
@@ -110,16 +110,16 @@ const ProductResultPage = () => {
                     </Box>
                     <Box sx={{ flex: 1 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1.5, flexWrap: 'wrap' }}>
-                        <Chip label="SKU: NUTR-8821" size="small" sx={{ backgroundColor: '#f3f4f6', color: '#374151', fontSize: '0.75rem', fontWeight: 600 }} />
-                        <Chip label="BATCH: A-990" size="small" sx={{ backgroundColor: '#f3f4f6', color: '#374151', fontSize: '0.75rem', fontWeight: 600 }} />
+                        <Chip label="SKU: NUTR-8821" size="small" sx={{ backgroundColor: '#f3f4f6', color: 'text.primary', fontSize: '0.75rem', fontWeight: 600 }} />
+                        <Chip label="BATCH: A-990" size="small" sx={{ backgroundColor: '#f3f4f6', color: 'text.primary', fontSize: '0.75rem', fontWeight: 600 }} />
                         <Box sx={{ ml: 'auto', display: 'flex', alignItems: 'center', gap: 1, backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '8px', px: 1.5, py: 0.5 }}>
                           <CheckCircleIcon sx={{ fontSize: 16, color: '#16a34a' }} />
                           <Typography sx={{ fontSize: '0.8125rem', fontWeight: 700, color: '#16a34a' }}>Verified Safe</Typography>
                         </Box>
                       </Box>
-                      <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: '#111827', mb: 0.5 }}>Synapse Neuro-Complex Forte</Typography>
-                      <Typography sx={{ fontSize: '0.9rem', color: '#6b7280', mb: 1.5 }}>Manufactured by BioKinetics Labs LLC</Typography>
-                      <Typography sx={{ fontSize: '0.875rem', color: '#374151', lineHeight: 1.6 }}>
+                      <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: 'text.primary', mb: 0.5 }}>Synapse Neuro-Complex Forte</Typography>
+                      <Typography sx={{ fontSize: '0.9rem', color: 'text.secondary', mb: 1.5 }}>Manufactured by BioKinetics Labs LLC</Typography>
+                      <Typography sx={{ fontSize: '0.875rem', color: 'text.primary', lineHeight: 1.6 }}>
                         Comprehensive clinical analysis confirms this product meets all established safety thresholds for heavy metals, microbial contaminants, and label claim accuracy. Raw material sourcing verified through blockchain ledger.
                       </Typography>
                     </Box>
@@ -131,14 +131,14 @@ const ProductResultPage = () => {
               <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
                 <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
                   <CardContent sx={{ p: 2.5 }}>
-                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.05em', mb: 1.5 }}>GLOBAL TRUST SCORE</Typography>
+                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: 'text.secondary', letterSpacing: '0.05em', mb: 1.5 }}>GLOBAL TRUST SCORE</Typography>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                       <Box sx={{ width: 60, height: 60, border: '2px solid #1d4ed8', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: '#1d4ed8' }}>98</Typography>
                       </Box>
                       <Box>
-                        <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: '#111827' }}>Exceptional</Typography>
-                        <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280' }}>Top 2% of category</Typography>
+                        <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: 'text.primary' }}>Exceptional</Typography>
+                        <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>Top 2% of category</Typography>
                       </Box>
                     </Box>
                   </CardContent>
@@ -147,10 +147,10 @@ const ProductResultPage = () => {
                   <CardContent sx={{ p: 2.5 }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
                       <CheckCircleIcon sx={{ fontSize: 18, color: '#1d4ed8' }} />
-                      <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.05em' }}>AUTHENTICITY</Typography>
+                      <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: 'text.secondary', letterSpacing: '0.05em' }}>AUTHENTICITY</Typography>
                     </Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: '#111827', mb: 0.5 }}>100% Genuine Origin</Typography>
-                    <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280' }}>Supply chain mathematically verified</Typography>
+                    <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: 'text.primary', mb: 0.5 }}>100% Genuine Origin</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>Supply chain mathematically verified</Typography>
                   </CardContent>
                 </Card>
               </Box>
@@ -159,7 +159,7 @@ const ProductResultPage = () => {
               <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
                 <CardContent sx={{ p: 3 }}>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 3 }}>
-                    <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: '#111827' }}>Composition Analysis</Typography>
+                    <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}>Composition Analysis</Typography>
                     <Typography sx={{ fontSize: '0.875rem', color: '#1d4ed8', fontWeight: 600, cursor: 'pointer' }}>View Full Report →</Typography>
                   </Box>
                   <DonutChart />
@@ -169,12 +169,12 @@ const ProductResultPage = () => {
               {/* Manufacturing */}
               <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
                 <CardContent sx={{ p: 3 }}>
-                  <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: '#111827', mb: 2.5 }}>Manufacturing Details</Typography>
+                  <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary', mb: 2.5 }}>Manufacturing Details</Typography>
                   {mfgDetails.map((d, i) => (
                     <Box key={i}>
                       <Box sx={{ display: 'grid', gridTemplateColumns: '180px 1fr', gap: 2, py: 2 }}>
-                        <Typography sx={{ fontSize: '0.875rem', color: '#9ca3af' }}>{d.label}</Typography>
-                        <Typography sx={{ fontSize: '0.875rem', color: '#111827', fontWeight: 500, whiteSpace: 'pre-line' }}>{d.value}</Typography>
+                        <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>{d.label}</Typography>
+                        <Typography sx={{ fontSize: '0.875rem', color: 'text.primary', fontWeight: 500, whiteSpace: 'pre-line' }}>{d.value}</Typography>
                       </Box>
                       {i < mfgDetails.length - 1 && <Divider />}
                     </Box>
@@ -190,14 +190,14 @@ const ProductResultPage = () => {
           {/* Product Actions */}
           <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
             <CardContent sx={{ p: 2.5 }}>
-              <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.05em', mb: 2 }}>PRODUCT ACTIONS</Typography>
+              <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: 'text.secondary', letterSpacing: '0.05em', mb: 2 }}>PRODUCT ACTIONS</Typography>
               <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
                 <Button fullWidth variant="contained" startIcon={<TrackIcon />}
                   sx={{ backgroundColor: '#1d4ed8', textTransform: 'none', fontWeight: 600, borderRadius: '8px', '&:hover': { backgroundColor: '#1e40af' } }}>
                   Track Changes
                 </Button>
                 <Button fullWidth variant="outlined" startIcon={<DownloadIcon />}
-                  sx={{ borderColor: '#e5e7eb', color: '#374151', textTransform: 'none', fontWeight: 600, borderRadius: '8px', '&:hover': { borderColor: '#d1d5db', backgroundColor: '#f9fafb' } }}>
+                  sx={{ borderColor: '#e5e7eb', color: 'text.primary', textTransform: 'none', fontWeight: 600, borderRadius: '8px', '&:hover': { borderColor: '#d1d5db', backgroundColor: '#f9fafb' } }}>
                   Download Certificate
                 </Button>
                 <Button fullWidth variant="outlined" startIcon={<ReportIcon />}
@@ -205,7 +205,7 @@ const ProductResultPage = () => {
                   sx={{ borderColor: '#fecaca', color: '#dc2626', textTransform: 'none', fontWeight: 600, borderRadius: '8px', backgroundColor: '#fef2f2', '&:hover': { backgroundColor: '#fee2e2' } }}>
                   Report Issue
                 </Button>
-                <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af', textAlign: 'center' }}>File a clinical discrepancy report</Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', textAlign: 'center' }}>File a clinical discrepancy report</Typography>
               </Box>
             </CardContent>
           </Card>
@@ -213,14 +213,14 @@ const ProductResultPage = () => {
           {/* Market Context */}
           <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
             <CardContent sx={{ p: 2.5 }}>
-              <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.05em', mb: 2 }}>MARKET CONTEXT</Typography>
+              <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: 'text.secondary', letterSpacing: '0.05em', mb: 2 }}>MARKET CONTEXT</Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Box sx={{ width: 36, height: 36, borderRadius: '8px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <TrendingUpIcon sx={{ fontSize: 18, color: '#1d4ed8' }} />
                 </Box>
                 <Box>
-                  <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>High Demand Status</Typography>
-                  <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>Scan frequency up 24% this week</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: 'text.primary' }}>High Demand Status</Typography>
+                  <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>Scan frequency up 24% this week</Typography>
                 </Box>
               </Box>
             </CardContent>
@@ -229,12 +229,12 @@ const ProductResultPage = () => {
           {/* Issue */}
           <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
             <CardContent sx={{ p: 2.5 }}>
-              <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#6b7280', letterSpacing: '0.05em', mb: 2 }}>ISSUE</Typography>
+              <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: 'text.secondary', letterSpacing: '0.05em', mb: 2 }}>ISSUE</Typography>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Box sx={{ width: 36, height: 36, borderRadius: '8px', backgroundColor: '#f3f4f6' }} />
                 <Box>
-                  <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>Report an issue</Typography>
-                  <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>Report issue to check</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: 'text.primary' }}>Report an issue</Typography>
+                  <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>Report issue to check</Typography>
                 </Box>
               </Box>
             </CardContent>
