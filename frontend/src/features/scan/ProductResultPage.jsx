@@ -62,7 +62,7 @@ const ProductResultPage = () => {
         startIcon={<ArrowBack />}
         onClick={() => navigate(-1)}
         sx={{
-          color: t('#6b7280', '#94a3b8'),
+          color: 'text.secondary',
           textTransform: 'none',
           mb: 2,
           '&:hover': { backgroundColor: t('#f3f4f6', '#1e293b') },
@@ -100,15 +100,15 @@ const ProductResultPage = () => {
               </Box>
               <Box>
                 <Typography
-                  sx={{ fontWeight: 700, fontSize: '1.25rem', color: t('#111827', '#f8fafc') }}
+                  sx={{ fontWeight: 700, fontSize: '1.25rem', color: 'text.primary' }}
                 >
                   {productData.name}
                 </Typography>
-                <Typography sx={{ fontSize: '0.875rem', color: t('#6b7280', '#94a3b8') }}>
+                <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary' }}>
                   {productData.brand} · UPC: {productData.upc}
                 </Typography>
                 <Typography
-                  sx={{ fontSize: '0.8125rem', color: t('#9ca3af', '#64748b'), mt: 0.25 }}
+                  sx={{ fontSize: '0.8125rem', color: 'text.secondary', mt: 0.25 }}
                 >
                   {productData.category}
                 </Typography>
@@ -121,7 +121,7 @@ const ProductResultPage = () => {
                 {productData.safetyScore}
               </Typography>
               <Typography
-                sx={{ fontSize: '0.75rem', color: t('#9ca3af', '#64748b'), fontWeight: 600 }}
+                sx={{ fontSize: '0.75rem', color: 'text.secondary', fontWeight: 600 }}
               >
                 SAFETY SCORE
               </Typography>
@@ -146,7 +146,7 @@ const ProductResultPage = () => {
         <AppCard elevation={0}>
           <CardContent sx={{ p: 3 }}>
             <Typography
-              sx={{ fontWeight: 700, fontSize: '1.0625rem', color: t('#111827', '#f8fafc'), mb: 2 }}
+              sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary', mb: 2 }}
             >
               Ingredient Analysis
             </Typography>
@@ -189,12 +189,12 @@ const ProductResultPage = () => {
                         sx={{
                           fontWeight: 600,
                           fontSize: '0.875rem',
-                          color: t('#111827', '#f8fafc'),
+                          color: 'text.primary',
                         }}
                       >
                         {ing.name}
                       </Typography>
-                      <Typography sx={{ fontSize: '0.75rem', color: t('#6b7280', '#94a3b8') }}>
+                      <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
                         {ing.note}
                       </Typography>
                     </Box>
@@ -209,7 +209,7 @@ const ProductResultPage = () => {
         <AppCard elevation={0}>
           <CardContent sx={{ p: 3 }}>
             <Typography
-              sx={{ fontWeight: 700, fontSize: '1.0625rem', color: t('#111827', '#f8fafc'), mb: 2 }}
+              sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary', mb: 2 }}
             >
               Claims Verification
             </Typography>
@@ -227,7 +227,7 @@ const ProductResultPage = () => {
                   }}
                 >
                   <Typography
-                    sx={{ fontSize: '0.9375rem', color: t('#374151', '#cbd5e1'), fontWeight: 500 }}
+                    sx={{ fontSize: '0.9375rem', color: 'text.primary', fontWeight: 500 }}
                   >
                     {claim.text}
                   </Typography>
@@ -254,7 +254,7 @@ const ProductResultPage = () => {
               >
                 ✓ Overall Assessment
               </Typography>
-              <Typography sx={{ fontSize: '0.8125rem', color: t('#374151', '#cbd5e1') }}>
+              <Typography sx={{ fontSize: '0.8125rem', color: 'text.primary' }}>
                 This product is clinically safe for general consumer use. Minor allergen risk noted
                 from fragrance compounds.
               </Typography>

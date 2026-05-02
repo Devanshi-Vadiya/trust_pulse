@@ -11,8 +11,8 @@ const SettingsPage = () => {
   return (
     <Box sx={{ p: { xs: 2, md: 3 }, fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
-      <Typography sx={{ fontWeight: 700, fontSize: '1.75rem', color: '#111827', mb: 0.75 }}>Platform Settings</Typography>
-      <Typography sx={{ color: '#6b7280', fontSize: '0.9375rem', mb: 4 }}>
+      <Typography sx={{ fontWeight: 700, fontSize: '1.75rem', color: 'text.primary', mb: 0.75 }}>Platform Settings</Typography>
+      <Typography sx={{ color: 'text.secondary', fontSize: '0.9375rem', mb: 4 }}>
         Manage your clinical profile, security credentials, and application preferences.
       </Typography>
 
@@ -30,8 +30,8 @@ const SettingsPage = () => {
             >
               👨‍💼
             </Avatar>
-            <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: '#111827', mb: 0.25 }}>Dr. Sarah Jenkins</Typography>
-            <Typography sx={{ fontSize: '0.875rem', color: '#6b7280', mb: 3 }}>Lead Safety Analyst</Typography>
+            <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: 'text.primary', mb: 0.25 }}>Dr. Sarah Jenkins</Typography>
+            <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', mb: 3 }}>Lead Safety Analyst</Typography>
             <Button
               fullWidth
               variant="outlined"
@@ -50,7 +50,7 @@ const SettingsPage = () => {
               variant="outlined"
               startIcon={<PersonIcon sx={{ fontSize: 15 }} />}
               sx={{
-                borderColor: '#e5e7eb', color: '#374151',
+                borderColor: '#e5e7eb', color: 'text.primary',
                 textTransform: 'none', fontWeight: 600, borderRadius: '8px',
                 fontSize: '0.875rem',
                 '&:hover': { borderColor: '#d1d5db', backgroundColor: '#f9fafb' },
@@ -74,15 +74,15 @@ const SettingsPage = () => {
                 }}>
                   🔒
                 </Box>
-                <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: '#111827' }}>Account Security</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: 'text.primary' }}>Account Security</Typography>
               </Box>
 
               {securityItems.map((item, i) => (
                 <Box key={i}>
                   <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', py: 2 }}>
                     <Box>
-                      <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: '#111827', mb: 0.25 }}>{item.label}</Typography>
-                      <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>{item.sub}</Typography>
+                      <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: 'text.primary', mb: 0.25 }}>{item.label}</Typography>
+                      <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>{item.sub}</Typography>
                     </Box>
                     {item.actionVariant === 'contained' ? (
                       <Button
@@ -114,12 +114,12 @@ const SettingsPage = () => {
           <Card elevation={0} sx={{ border: '1px solid #fecaca', borderRadius: '14px', backgroundColor: '#fff' }}>
             <CardContent sx={{ p: 3 }}>
               <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: '#dc2626', mb: 0.75 }}>Danger Zone</Typography>
-              <Typography sx={{ fontSize: '0.875rem', color: '#6b7280', mb: 3 }}>Irreversible actions concerning your account data.</Typography>
+              <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', mb: 3 }}>Irreversible actions concerning your account data.</Typography>
               <Divider sx={{ mb: 2.5 }} />
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Box>
-                  <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: '#111827', mb: 0.25 }}>Delete Account</Typography>
-                  <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>Permanently remove your clinical data and profile.</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: '0.9375rem', color: 'text.primary', mb: 0.25 }}>Delete Account</Typography>
+                  <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>Permanently remove your clinical data and profile.</Typography>
                 </Box>
                 <Button
                   variant="contained"

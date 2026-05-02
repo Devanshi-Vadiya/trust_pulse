@@ -217,11 +217,11 @@ const SugarTrackerPage = () => {
         >
           <Box>
             <Typography
-              sx={{ fontWeight: 700, fontSize: '1.5rem', color: t('#111827', '#f8fafc') }}
+              sx={{ fontWeight: 700, fontSize: '1.5rem', color: 'text.primary' }}
             >
               Consumption Insights
             </Typography>
-            <Typography sx={{ color: t('#6b7280', '#94a3b8'), fontSize: '0.9375rem', mt: 0.5 }}>
+            <Typography sx={{ color: 'text.secondary', fontSize: '0.9375rem', mt: 0.5 }}>
               Detailed breakdown of your scanned items and metabolic risk factors.
             </Typography>
           </Box>
@@ -239,9 +239,9 @@ const SugarTrackerPage = () => {
                 backgroundColor: t('transparent', '#1e293b'),
               }}
             >
-              <CalendarIcon sx={{ fontSize: 16, color: t('#6b7280', '#94a3b8') }} />
+              <CalendarIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
               <Typography
-                sx={{ fontSize: '0.875rem', color: t('#374151', '#cbd5e1'), fontWeight: 500 }}
+                sx={{ fontSize: '0.875rem', color: 'text.primary', fontWeight: 500 }}
               >
                 Oct 12 – Oct 18
               </Typography>
@@ -251,7 +251,7 @@ const SugarTrackerPage = () => {
               startIcon={<DownloadIcon />}
               sx={{
                 borderColor: t('#e5e7eb', '#334155'),
-                color: t('#374151', '#cbd5e1'),
+                color: 'text.primary',
                 textTransform: 'none',
                 fontWeight: 600,
                 borderRadius: '8px',
@@ -295,11 +295,11 @@ const SugarTrackerPage = () => {
                 }}
               >
                 <Typography
-                  sx={{ fontWeight: 700, fontSize: '1.0625rem', color: t('#111827', '#f8fafc') }}
+                  sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}
                 >
                   7-Day Sugar Intake
                 </Typography>
-                <Typography sx={{ fontSize: '0.8125rem', color: t('#9ca3af', '#64748b') }}>
+                <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>
                   Measured in Grams (g)
                 </Typography>
               </Box>
@@ -308,12 +308,12 @@ const SugarTrackerPage = () => {
                   <CartesianGrid strokeDasharray="3 3" stroke={t('#f3f4f6', '#334155')} />
                   <XAxis
                     dataKey="day"
-                    tick={{ fontSize: 12, fill: t('#9ca3af', '#64748b') }}
+                    tick={{ fontSize: 12, fill: 'text.secondary' }}
                     axisLine={false}
                     tickLine={false}
                   />
                   <YAxis
-                    tick={{ fontSize: 12, fill: t('#9ca3af', '#64748b') }}
+                    tick={{ fontSize: 12, fill: 'text.secondary' }}
                     axisLine={false}
                     tickLine={false}
                     tickFormatter={(v) => `${v}g`}
@@ -324,7 +324,7 @@ const SugarTrackerPage = () => {
                       borderRadius: '8px',
                       border: t('1px solid #e5e7eb', '1px solid #334155'),
                       backgroundColor: t('#fff', '#1e293b'),
-                      color: t('#111827', '#f8fafc'),
+                      color: 'text.primary',
                       fontSize: '0.8125rem',
                     }}
                   />
@@ -334,7 +334,7 @@ const SugarTrackerPage = () => {
                     stroke="#1d4ed8"
                     fill="rgba(29,78,216,0.08)"
                     strokeWidth={2.5}
-                    dot={{ fill: t('#111827', '#f8fafc'), r: 5 }}
+                    dot={{ fill: 'text.primary', r: 5 }}
                     activeDot={{ r: 6 }}
                   />
                 </AreaChart>
@@ -379,11 +379,11 @@ const SugarTrackerPage = () => {
             <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
               <AppCard elevation={0}>
                 <CardContent sx={{ p: 2 }}>
-                  <Typography sx={{ fontSize: '0.75rem', color: t('#9ca3af', '#64748b'), mb: 0.5 }}>
+                  <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mb: 0.5 }}>
                     Daily Average
                   </Typography>
                   <Typography
-                    sx={{ fontWeight: 700, fontSize: '1.375rem', color: t('#111827', '#f8fafc') }}
+                    sx={{ fontWeight: 700, fontSize: '1.375rem', color: 'text.primary' }}
                   >
                     {dailyAverage}g
                   </Typography>
@@ -391,11 +391,11 @@ const SugarTrackerPage = () => {
               </AppCard>
               <AppCard elevation={0}>
                 <CardContent sx={{ p: 2 }}>
-                  <Typography sx={{ fontSize: '0.75rem', color: t('#9ca3af', '#64748b'), mb: 0.5 }}>
+                  <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mb: 0.5 }}>
                     Items Tracked
                   </Typography>
                   <Typography
-                    sx={{ fontWeight: 700, fontSize: '1.375rem', color: t('#111827', '#f8fafc') }}
+                    sx={{ fontWeight: 700, fontSize: '1.375rem', color: 'text.primary' }}
                   >
                     {itemsScanned}
                   </Typography>
@@ -416,7 +416,7 @@ const SugarTrackerPage = () => {
               }}
             >
               <Typography
-                sx={{ fontWeight: 700, fontSize: '1.0625rem', color: t('#111827', '#f8fafc') }}
+                sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}
               >
                 Daily Risk Breakdown
               </Typography>
@@ -430,14 +430,14 @@ const SugarTrackerPage = () => {
                     <Box
                       sx={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: l.color }}
                     />
-                    <Typography sx={{ fontSize: '0.75rem', color: t('#6b7280', '#94a3b8') }}>
+                    <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
                       {l.label}
                     </Typography>
                   </Box>
                 ))}
               </Box>
             </Box>
-            <Typography sx={{ fontSize: '0.8125rem', color: t('#9ca3af', '#64748b'), mb: 2.5 }}>
+            <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary', mb: 2.5 }}>
               Proportion of scanned items by metabolic impact.
             </Typography>
             <ResponsiveContainer width="100%" height={160}>
@@ -451,7 +451,7 @@ const SugarTrackerPage = () => {
                 <YAxis
                   type="category"
                   dataKey="day"
-                  tick={{ fontSize: 12, fill: t('#6b7280', '#94a3b8') }}
+                  tick={{ fontSize: 12, fill: 'text.secondary' }}
                   axisLine={false}
                   tickLine={false}
                   width={30}
@@ -480,7 +480,7 @@ const SugarTrackerPage = () => {
               }}
             >
               <Typography
-                sx={{ fontWeight: 700, fontSize: '1.0625rem', color: t('#111827', '#f8fafc') }}
+                sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}
               >
                 Recent Scans Log
               </Typography>
@@ -511,7 +511,7 @@ const SugarTrackerPage = () => {
                   sx={{
                     fontSize: '0.75rem',
                     fontWeight: 700,
-                    color: t('#9ca3af', '#64748b'),
+                    color: 'text.secondary',
                     letterSpacing: '0.05em',
                   }}
                 >
@@ -546,20 +546,20 @@ const SugarTrackerPage = () => {
                   </Avatar>
                   <Box>
                     <Typography
-                      sx={{ fontWeight: 600, fontSize: '0.875rem', color: t('#111827', '#f8fafc') }}
+                      sx={{ fontWeight: 600, fontSize: '0.875rem', color: 'text.primary' }}
                     >
                       {s.name}
                     </Typography>
-                    <Typography sx={{ fontSize: '0.75rem', color: t('#9ca3af', '#64748b') }}>
+                    <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
                       {s.sub}
                     </Typography>
                   </Box>
                 </Box>
-                <Typography sx={{ fontSize: '0.875rem', color: t('#374151', '#cbd5e1') }}>
+                <Typography sx={{ fontSize: '0.875rem', color: 'text.primary' }}>
                   {s.category}
                 </Typography>
                 <Typography
-                  sx={{ fontSize: '0.875rem', fontWeight: 600, color: t('#111827', '#f8fafc') }}
+                  sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary' }}
                 >
                   {s.sugar}g
                 </Typography>
@@ -578,7 +578,7 @@ const SugarTrackerPage = () => {
                     {s.risk}
                   </Typography>
                 </Box>
-                <Typography sx={{ fontSize: '0.8125rem', color: t('#9ca3af', '#64748b') }}>
+                <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>
                   {s.time}
                 </Typography>
               </Box>
@@ -597,7 +597,7 @@ const SugarTrackerPage = () => {
           PaperProps={{ sx: { borderRadius: '12px', p: 1, backgroundColor: t('#fff', '#1e293b') } }}
         >
           <form onSubmit={formik.handleSubmit}>
-            <DialogTitle sx={{ fontWeight: 700, color: t('#111827', '#f8fafc'), pb: 1 }}>
+            <DialogTitle sx={{ fontWeight: 700, color: 'text.primary', pb: 1 }}>
               Add New Entry
             </DialogTitle>
             <DialogContent sx={{ pb: 1 }}>
@@ -612,7 +612,7 @@ const SugarTrackerPage = () => {
                     sx={{
                       fontSize: '0.8125rem',
                       fontWeight: 600,
-                      color: t('#374151', '#cbd5e1'),
+                      color: 'text.primary',
                       mb: 0.5,
                     }}
                   >
@@ -637,7 +637,7 @@ const SugarTrackerPage = () => {
                 sx={{
                   fontSize: '0.8125rem',
                   fontWeight: 600,
-                  color: t('#374151', '#cbd5e1'),
+                  color: 'text.primary',
                   mb: 0.5,
                 }}
               >
@@ -665,7 +665,7 @@ const SugarTrackerPage = () => {
                   setIsModalOpen(false);
                   formik.resetForm();
                 }}
-                sx={{ color: t('#6b7280', '#94a3b8'), textTransform: 'none', fontWeight: 600 }}
+                sx={{ color: 'text.secondary', textTransform: 'none', fontWeight: 600 }}
               >
                 Cancel
               </AppButton>

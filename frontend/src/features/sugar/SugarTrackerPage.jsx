@@ -136,16 +136,16 @@ const SugarTrackerPage = () => {
       {/* Header */}
       <Box sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', mb: 3, flexWrap: 'wrap', gap: 2 }}>
         <Box>
-          <Typography sx={{ fontWeight: 700, fontSize: '1.5rem', color: '#111827' }}>Consumption Insights</Typography>
-          <Typography sx={{ color: '#6b7280', fontSize: '0.9375rem', mt: 0.5 }}>Detailed breakdown of your scanned items and metabolic risk factors.</Typography>
+          <Typography sx={{ fontWeight: 700, fontSize: '1.5rem', color: 'text.primary' }}>Consumption Insights</Typography>
+          <Typography sx={{ color: 'text.secondary', fontSize: '0.9375rem', mt: 0.5 }}>Detailed breakdown of your scanned items and metabolic risk factors.</Typography>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, border: '1px solid #e5e7eb', borderRadius: '8px', px: 1.5, py: 0.875, cursor: 'pointer' }}>
-            <CalendarIcon sx={{ fontSize: 16, color: '#6b7280' }} />
-            <Typography sx={{ fontSize: '0.875rem', color: '#374151', fontWeight: 500 }}>Oct 12 – Oct 18</Typography>
+            <CalendarIcon sx={{ fontSize: 16, color: 'text.secondary' }} />
+            <Typography sx={{ fontSize: '0.875rem', color: 'text.primary', fontWeight: 500 }}>Oct 12 – Oct 18</Typography>
           </Box>
           <Button variant="outlined" startIcon={<DownloadIcon />}
-            sx={{ borderColor: '#e5e7eb', color: '#374151', textTransform: 'none', fontWeight: 600, borderRadius: '8px', '&:hover': { borderColor: '#d1d5db', backgroundColor: '#f9fafb' } }}>
+            sx={{ borderColor: '#e5e7eb', color: 'text.primary', textTransform: 'none', fontWeight: 600, borderRadius: '8px', '&:hover': { borderColor: '#d1d5db', backgroundColor: '#f9fafb' } }}>
             Export
           </Button>
           <Button variant="contained" startIcon={<AddIcon />} onClick={handleOpenModal}
@@ -161,8 +161,8 @@ const SugarTrackerPage = () => {
         <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
           <CardContent sx={{ p: 3 }}>
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-              <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: '#111827' }}>7-Day Sugar Intake</Typography>
-              <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>Measured in Grams (g)</Typography>
+              <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}>7-Day Sugar Intake</Typography>
+              <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>Measured in Grams (g)</Typography>
             </Box>
             <ResponsiveContainer width="100%" height={220}>
               <AreaChart data={sugarData} margin={{ top: 5, right: 10, bottom: 0, left: -10 }}>
@@ -176,11 +176,11 @@ const SugarTrackerPage = () => {
             <Box sx={{ display: 'flex', gap: 3, mt: 1.5 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Box sx={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: '#1d4ed8' }} />
-                <Typography sx={{ fontSize: '0.75rem', color: '#6b7280' }}>Intake</Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>Intake</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Box sx={{ width: 16, height: 2, backgroundColor: '#b45309' }} />
-                <Typography sx={{ fontSize: '0.75rem', color: '#6b7280' }}>AHA Daily Limit (50g)</Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>AHA Daily Limit (50g)</Typography>
               </Box>
             </Box>
           </CardContent>
@@ -202,14 +202,14 @@ const SugarTrackerPage = () => {
           <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}>
             <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
               <CardContent sx={{ p: 2 }}>
-                <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af', mb: 0.5 }}>Daily Average</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: '1.375rem', color: '#111827' }}>{dailyAverage}g</Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mb: 0.5 }}>Daily Average</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: '1.375rem', color: 'text.primary' }}>{dailyAverage}g</Typography>
               </CardContent>
             </Card>
             <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
               <CardContent sx={{ p: 2 }}>
-                <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af', mb: 0.5 }}>Items Tracked</Typography>
-                <Typography sx={{ fontWeight: 700, fontSize: '1.375rem', color: '#111827' }}>{itemsScanned}</Typography>
+                <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mb: 0.5 }}>Items Tracked</Typography>
+                <Typography sx={{ fontWeight: 700, fontSize: '1.375rem', color: 'text.primary' }}>{itemsScanned}</Typography>
               </CardContent>
             </Card>
           </Box>
@@ -220,17 +220,17 @@ const SugarTrackerPage = () => {
       <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px', mb: 2.5 }}>
         <CardContent sx={{ p: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 0.5 }}>
-            <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: '#111827' }}>Daily Risk Breakdown</Typography>
+            <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}>Daily Risk Breakdown</Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               {[{ color: '#1d4ed8', label: 'Safe (<5g)' }, { color: '#b45309', label: 'Watch (5-15g)' }, { color: '#dc2626', label: 'High (>15g)' }].map(l => (
                 <Box key={l.label} sx={{ display: 'flex', alignItems: 'center', gap: 0.75 }}>
                   <Box sx={{ width: 10, height: 10, borderRadius: '50%', backgroundColor: l.color }} />
-                  <Typography sx={{ fontSize: '0.75rem', color: '#6b7280' }}>{l.label}</Typography>
+                  <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>{l.label}</Typography>
                 </Box>
               ))}
             </Box>
           </Box>
-          <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af', mb: 2.5 }}>Proportion of scanned items by metabolic impact.</Typography>
+          <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary', mb: 2.5 }}>Proportion of scanned items by metabolic impact.</Typography>
           <ResponsiveContainer width="100%" height={160}>
             <BarChart data={riskData} layout="vertical" margin={{ left: 20, right: 10 }} barSize={14}>
               <XAxis type="number" hide />
@@ -247,18 +247,18 @@ const SugarTrackerPage = () => {
       <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
         <CardContent sx={{ p: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
-            <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: '#111827' }}>Recent Scans Log</Typography>
+            <Typography sx={{ fontWeight: 700, fontSize: '1.0625rem', color: 'text.primary' }}>Recent Scans Log</Typography>
             <Typography sx={{ fontSize: '0.875rem', color: '#1d4ed8', fontWeight: 600, cursor: 'pointer' }}>View All</Typography>
           </Box>
           {/* Table header */}
           <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '2fr 1fr 1fr 1fr 1fr' }, gap: 1, pb: 1.5, borderBottom: '1px solid #f3f4f6', mb: 1, display: { xs: 'none', sm: 'grid' } }}>
             {['PRODUCT INFO', 'CATEGORY', 'ADDED SUGARS', 'RISK LEVEL', 'TIME'].map(h => (
-              <Typography key={h} sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em' }}>{h}</Typography>
+              <Typography key={h} sx={{ fontSize: '0.75rem', fontWeight: 700, color: 'text.secondary', letterSpacing: '0.05em' }}>{h}</Typography>
             ))}
           </Box>
           
           {scansLog.length === 0 && (
-            <Typography sx={{ py: 3, textAlign: 'center', color: '#9ca3af', fontSize: '0.875rem' }}>No items tracked yet.</Typography>
+            <Typography sx={{ py: 3, textAlign: 'center', color: 'text.secondary', fontSize: '0.875rem' }}>No items tracked yet.</Typography>
           )}
 
           {scansLog.map((s, i) => (
@@ -273,16 +273,16 @@ const SugarTrackerPage = () => {
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
                 <Avatar sx={{ width: 36, height: 36, borderRadius: '8px', backgroundColor: '#f3f4f6', fontSize: '1.1rem' }}>{s.emoji}</Avatar>
                 <Box>
-                  <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{s.name}</Typography>
-                  <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>{s.sub}</Typography>
+                  <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: 'text.primary' }}>{s.name}</Typography>
+                  <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>{s.sub}</Typography>
                 </Box>
               </Box>
-              <Typography sx={{ fontSize: '0.875rem', color: '#374151' }}>{s.category}</Typography>
-              <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#111827' }}>{s.sugar}g</Typography>
+              <Typography sx={{ fontSize: '0.875rem', color: 'text.primary' }}>{s.category}</Typography>
+              <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary' }}>{s.sugar}g</Typography>
               <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 0.5, backgroundColor: s.riskBg, borderRadius: '6px', px: 1, py: 0.25, width: 'fit-content' }}>
                 <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: s.riskColor }}>{s.risk}</Typography>
               </Box>
-              <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>{s.time}</Typography>
+              <Typography sx={{ fontSize: '0.8125rem', color: 'text.secondary' }}>{s.time}</Typography>
             </Box>
           ))}
         </CardContent>
@@ -291,11 +291,11 @@ const SugarTrackerPage = () => {
       {/* Add Item Modal */}
       <Dialog open={isModalOpen} onClose={handleCloseModal} maxWidth="xs" fullWidth PaperProps={{ sx: { borderRadius: '12px', p: 1 } }}>
         <form onSubmit={formik.handleSubmit}>
-          <DialogTitle sx={{ fontWeight: 700, color: '#111827', pb: 1 }}>Add New Entry</DialogTitle>
+          <DialogTitle sx={{ fontWeight: 700, color: 'text.primary', pb: 1 }}>Add New Entry</DialogTitle>
           <DialogContent sx={{ pb: 1 }}>
-            <Typography sx={{ fontSize: '0.875rem', color: '#6b7280', mb: 3 }}>Log a food or beverage manually.</Typography>
+            <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', mb: 3 }}>Log a food or beverage manually.</Typography>
             
-            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#374151', mb: 0.5 }}>Item Name</Typography>
+            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'text.primary', mb: 0.5 }}>Item Name</Typography>
             <TextField 
               fullWidth size="small" placeholder="e.g. Apple Juice" sx={{ mb: 2 }}
               name="name"
@@ -306,7 +306,7 @@ const SugarTrackerPage = () => {
               helperText={formik.touched.name && formik.errors.name}
             />
             
-            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#374151', mb: 0.5 }}>Details / Serving Size</Typography>
+            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'text.primary', mb: 0.5 }}>Details / Serving Size</Typography>
             <TextField 
               fullWidth size="small" placeholder="e.g. 1 glass (240ml)" sx={{ mb: 2 }}
               name="sub"
@@ -317,7 +317,7 @@ const SugarTrackerPage = () => {
               helperText={formik.touched.sub && formik.errors.sub}
             />
             
-            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#374151', mb: 0.5 }}>Category</Typography>
+            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'text.primary', mb: 0.5 }}>Category</Typography>
             <TextField
               fullWidth size="small" select sx={{ mb: 2 }}
               name="category"
@@ -330,7 +330,7 @@ const SugarTrackerPage = () => {
               {categories.map(c => <MenuItem key={c} value={c}>{c}</MenuItem>)}
             </TextField>
             
-            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#374151', mb: 0.5 }}>Added Sugars (g)</Typography>
+            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'text.primary', mb: 0.5 }}>Added Sugars (g)</Typography>
             <TextField 
               fullWidth size="small" type="number" placeholder="0" sx={{ mb: 2 }}
               name="sugar"
@@ -341,7 +341,7 @@ const SugarTrackerPage = () => {
               helperText={formik.touched.sugar && formik.errors.sugar}
             />
             
-            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#374151', mb: 0.5 }}>Emoji Icon</Typography>
+            <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'text.primary', mb: 0.5 }}>Emoji Icon</Typography>
             <TextField 
               fullWidth size="small" placeholder="e.g. 🍎" sx={{ mb: 1 }}
               name="emoji"
@@ -353,7 +353,7 @@ const SugarTrackerPage = () => {
             />
           </DialogContent>
           <DialogActions sx={{ px: 3, pb: 2 }}>
-            <Button onClick={handleCloseModal} sx={{ color: '#6b7280', textTransform: 'none', fontWeight: 600 }}>Cancel</Button>
+            <Button onClick={handleCloseModal} sx={{ color: 'text.secondary', textTransform: 'none', fontWeight: 600 }}>Cancel</Button>
             <Button 
               type="submit" variant="contained"
               disabled={formik.isSubmitting}

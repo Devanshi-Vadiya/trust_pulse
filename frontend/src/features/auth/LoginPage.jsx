@@ -84,20 +84,20 @@ const LoginPage = () => {
             </Box>
             <Box>
               <Typography
-                sx={{ fontWeight: 800, fontSize: '1.125rem', color: '#111827', lineHeight: 1 }}
+                sx={{ fontWeight: 800, fontSize: '1.125rem', color: 'text.primary', lineHeight: 1 }}
               >
                 TrustPulse AI
               </Typography>
-              <Typography sx={{ fontSize: '0.75rem', color: '#6b7280' }}>
+              <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
                 Clinical Precision Engine
               </Typography>
             </Box>
           </Box>
 
-          <Typography sx={{ fontWeight: 700, fontSize: '1.5rem', color: '#111827', mb: 0.5 }}>
+          <Typography sx={{ fontWeight: 700, fontSize: '1.5rem', color: 'text.primary', mb: 0.5 }}>
             Welcome back
           </Typography>
-          <Typography sx={{ fontSize: '0.9375rem', color: '#6b7280', mb: 3 }}>
+          <Typography sx={{ fontSize: '0.9375rem', color: 'text.secondary', mb: 3 }}>
             Sign in to your clinical dashboard
           </Typography>
 
@@ -108,7 +108,7 @@ const LoginPage = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151', mb: 0.75 }}>
+            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary', mb: 0.75 }}>
               Email Address
             </Typography>
             <AppInput
@@ -130,7 +130,7 @@ const LoginPage = () => {
                 mb: 0.75,
               }}
             >
-              <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151' }}>
+              <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary' }}>
                 Password
               </Typography>
               <Typography
@@ -183,7 +183,7 @@ const LoginPage = () => {
             </AppButton>
           </form>
 
-          <Typography sx={{ textAlign: 'center', fontSize: '0.9375rem', color: '#6b7280' }}>
+          <Typography sx={{ textAlign: 'center', fontSize: '0.9375rem', color: 'text.secondary' }}>
             Don't have an account?{' '}
             <Link
               to="/signup"

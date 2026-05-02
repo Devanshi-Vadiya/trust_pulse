@@ -83,20 +83,20 @@ const SignupPage = () => {
             </Box>
             <Box>
               <Typography
-                sx={{ fontWeight: 800, fontSize: '1.125rem', color: '#111827', lineHeight: 1 }}
+                sx={{ fontWeight: 800, fontSize: '1.125rem', color: 'text.primary', lineHeight: 1 }}
               >
                 TrustPulse AI
               </Typography>
-              <Typography sx={{ fontSize: '0.75rem', color: '#6b7280' }}>
+              <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>
                 Clinical Precision Engine
               </Typography>
             </Box>
           </Box>
 
-          <Typography sx={{ fontWeight: 700, fontSize: '1.5rem', color: '#111827', mb: 0.5 }}>
+          <Typography sx={{ fontWeight: 700, fontSize: '1.5rem', color: 'text.primary', mb: 0.5 }}>
             Create your account
           </Typography>
-          <Typography sx={{ fontSize: '0.9375rem', color: '#6b7280', mb: 3 }}>
+          <Typography sx={{ fontSize: '0.9375rem', color: 'text.secondary', mb: 3 }}>
             Start verifying product safety today
           </Typography>
 
@@ -107,7 +107,7 @@ const SignupPage = () => {
           )}
 
           <form onSubmit={handleSubmit}>
-            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151', mb: 0.75 }}>
+            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary', mb: 0.75 }}>
               Full Name
             </Typography>
             <AppInput
@@ -120,7 +120,7 @@ const SignupPage = () => {
               sx={{ mb: 2.5 }}
             />
 
-            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151', mb: 0.75 }}>
+            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary', mb: 0.75 }}>
               Email Address
             </Typography>
             <AppInput
@@ -134,7 +134,7 @@ const SignupPage = () => {
               sx={{ mb: 2.5 }}
             />
 
-            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: '#374151', mb: 0.75 }}>
+            <Typography sx={{ fontSize: '0.875rem', fontWeight: 600, color: 'text.primary', mb: 0.75 }}>
               Password
             </Typography>
             <AppInput
@@ -181,7 +181,7 @@ const SignupPage = () => {
             </AppButton>
           </form>
 
-          <Typography sx={{ textAlign: 'center', fontSize: '0.9375rem', color: '#6b7280' }}>
+          <Typography sx={{ textAlign: 'center', fontSize: '0.9375rem', color: 'text.secondary' }}>
             Already have an account?{' '}
             <Link to="/login" style={{ color: '#1d4ed8', fontWeight: 600, textDecoration: 'none' }}>
               Sign in

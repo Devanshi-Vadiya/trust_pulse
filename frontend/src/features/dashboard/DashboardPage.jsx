@@ -27,8 +27,8 @@ const SugarGauge = ({ value }) => {
           style={{ transform: 'rotate(-90deg)', transformOrigin: '60px 60px' }} />
       </svg>
       <Box sx={{ position: 'absolute', textAlign: 'center' }}>
-        <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: '#111827', lineHeight: 1 }}>{value}g</Typography>
-        <Typography sx={{ fontSize: '0.75rem', color: '#6b7280' }}>Consumed</Typography>
+        <Typography sx={{ fontWeight: 800, fontSize: '1.5rem', color: 'text.primary', lineHeight: 1 }}>{value}g</Typography>
+        <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary' }}>Consumed</Typography>
       </Box>
     </Box>
   );

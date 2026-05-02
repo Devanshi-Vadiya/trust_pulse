@@ -116,7 +116,7 @@ const WaterVerificationPage = () => {
     <Box sx={{ p: { xs: 2, md: 3 }, fontFamily: 'Inter, sans-serif' }}>
       {/* Header */}
       <Box sx={{ mb: 3 }}>
-        <Typography sx={{ fontWeight: 700, fontSize: '1.75rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>Water Verification Report</Typography>
+        <Typography sx={{ fontWeight: 700, fontSize: '1.75rem', color: 'text.primary' }}>Water Verification Report</Typography>
         <Typography sx={{ color: isLight ? '#6b7280' : '#94a3b8', fontSize: '0.9375rem' }}>Enter a product barcode to verify water brand safety and quality.</Typography>
       </Box>
 
@@ -125,7 +125,7 @@ const WaterVerificationPage = () => {
         <CardContent sx={{ p: 3 }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 0.75 }}>
             <Box sx={{ fontSize: '1.125rem' }}>⊞</Box>
-            <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>Manual Batch Entry</Typography>
+            <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: 'text.primary' }}>Manual Batch Entry</Typography>
           </Box>
           <Typography sx={{ fontSize: '0.8125rem', color: isLight ? '#6b7280' : '#94a3b8', mb: 2 }}>
             Try: <strong>3068320114444</strong> (Evian) · <strong>3057640117107</strong> (Volvic) · <strong>5000112548167</strong> (Buxton)
@@ -157,7 +157,7 @@ const WaterVerificationPage = () => {
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
                   <Box>
                     <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#9ca3af' : '#64748b', letterSpacing: '0.05em', mb: 0.5 }}>OVERALL STATUS</Typography>
-                    <Typography sx={{ fontWeight: 700, fontSize: '1.25rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>{product.brand}</Typography>
+                    <Typography sx={{ fontWeight: 700, fontSize: '1.25rem', color: 'text.primary' }}>{product.brand}</Typography>
                   </Box>
                   <Box sx={{ backgroundColor: isLight ? '#dcfce7' : '#064e3b', borderRadius: '6px', px: 1.5, py: 0.5 }}>
                     <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: isLight ? '#15803d' : '#4ade80' }}>VERIFIED</Typography>
@@ -197,11 +197,11 @@ const WaterVerificationPage = () => {
                       <Box key={c.label} sx={{ border: '1px solid #e5e7eb', borderRadius: '10px', p: 1.75 }}>
                         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 0.5 }}>
                           <Box>
-                            <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a' }}>{c.label}</Typography>
+                            <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: 'text.primary' }}>{c.label}</Typography>
                             <Typography sx={{ fontSize: '0.75rem', color: isLight ? '#9ca3af' : '#64748b' }}>{c.target}</Typography>
                           </Box>
                           <Box>
-                            <Typography sx={{ fontWeight: 700, fontSize: '0.9375rem', color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a', textAlign: 'right' }}>{c.value}</Typography>
+                            <Typography sx={{ fontWeight: 700, fontSize: '0.9375rem', color: 'text.primary', textAlign: 'right' }}>{c.value}</Typography>
                             <Typography sx={{ fontSize: '0.6875rem', fontWeight: 700, color: isLight ? '#16a34a' : '#4ade80', textAlign: 'right' }}>SAFE</Typography>
                           </Box>
                         </Box>
@@ -263,7 +263,7 @@ const WaterVerificationPage = () => {
                 {[['Barcode', product.barcode], ['Brand', product.brand || 'Unknown'], ['Category', product.category?.split(',')[0] || 'Water'], ['Countries', product.countries?.split(',')[0] || 'Global']].map(([k, v]) => (
                   <Box key={k} sx={{ display: 'flex', justifyContent: 'space-between', mb: 1.5 }}>
                     <Typography sx={{ fontSize: '0.8125rem', color: isLight ? '#6b7280' : '#94a3b8' }}>{k}</Typography>
-                    <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: isLight ? '#111827' : isLight ? '#f8fafc' : '#0f172a', textAlign: 'right', maxWidth: '55%' }}>{v}</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: 'text.primary', textAlign: 'right', maxWidth: '55%' }}>{v}</Typography>
                   </Box>
                 ))}
               </CardContent>
