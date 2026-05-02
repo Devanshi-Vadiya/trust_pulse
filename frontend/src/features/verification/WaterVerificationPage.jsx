@@ -1,5 +1,7 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useSnackbar } from 'notistack';
+import apiClient from '../../services/api';
 import PageSEO from '../../components/PageSEO';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
@@ -43,16 +45,30 @@ const WaterVerificationPage = () => {
   const [scanned, setScanned] = useState(false);
   const themeMode = useSelector((state) => state.ui.themeMode);
   const isLight = themeMode === 'light';
+  const { enqueueSnackbar } = useSnackbar();
   const t = (light, dark) => (isLight ? light : dark);
 
-  const handleScan = useCallback(() => {
+  const handleScan = async () => {
     if (!query.trim()) return;
     setLoading(true);
-    setTimeout(() => {
+    setScanned(false);
+    
+    try {
+      const response = await apiClient.post('/water/verify', { batchId: query.trim() });
+      const data = response.data.data;
+      
+      if (data.found) {
+        enqueueSnackbar(`Verified Batch: ${data.batchId} - ${data.overallStatus}`, { variant: 'success' });
+        setScanned(true);
+      } else {
+         enqueueSnackbar('Batch ID not found in our verification database.', { variant: 'error' });
+      }
+    } catch (err) {
+      enqueueSnackbar(err.response?.data?.message || 'Verification failed. Try another code.', { variant: 'error' });
+    } finally {
       setLoading(false);
-      setScanned(true);
-    }, 1500);
-  }, [query]);
+    }
+  };
 
   const overallScore = 76;
 
