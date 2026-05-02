@@ -3,8 +3,8 @@ import store from '../store';
 import { logout } from '../store/slices/authSlice';
 import { showToast } from '../store/slices/uiSlice';
 
-// Base URL would point to the backend in production
-const API_URL = 'https://api.trustpulse.ai/v1';
+// Base URL pulled from environment variables in Vercel
+const API_URL = import.meta.env.VITE_API_URL;
 
 const apiClient = axios.create({
   baseURL: API_URL,
