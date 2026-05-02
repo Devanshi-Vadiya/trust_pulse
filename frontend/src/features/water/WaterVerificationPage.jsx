@@ -1,6 +1,9 @@
-import { Box, Typography, Button, Card, CardContent, Divider, LinearProgress } from '@mui/material';
-import { Share as ShareIcon, Download as DownloadIcon, CheckCircle as CheckIcon, LocationOn as LocationIcon } from '@mui/icons-material';
+import { useState } from 'react';
+import { Box, Typography, Button, Card, CardContent, Divider, LinearProgress, TextField, IconButton, CircularProgress } from '@mui/material';
+import { Share as ShareIcon, Download as DownloadIcon, CheckCircle as CheckIcon, LocationOn as LocationIcon, Search as SearchIcon } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useSnackbar } from 'notistack';
+import apiClient from '../../../services/api';
 
 const TDSGauge = ({ value }) => {
   const pct = Math.min(value / 500, 1);
@@ -32,6 +35,31 @@ const chems = [
 
 const WaterVerificationPage = () => {
   const navigate = useNavigate();
+  const [code, setCode] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [scanned, setScanned] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleScan = async () => {
+    if (!code.trim()) return;
+    setLoading(true);
+    setScanned(false);
+    
+    try {
+      const response = await apiClient.post('/sugar/scan', { barcode: code.trim() });
+      const data = response.data.data;
+      
+      enqueueSnackbar(`Verified Brand: ${data.brand || 'Unknown'} - ${data.name}`, { 
+        variant: 'success' 
+      });
+      setScanned(true);
+    } catch (err) {
+      enqueueSnackbar('Product barcode not found in global database.', { variant: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box sx={{ p: { xs: 2, md: 3 }, fontFamily: 'Inter, sans-serif' }}>
       {/* Breadcrumb */}
@@ -60,66 +88,89 @@ const WaterVerificationPage = () => {
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: '1fr 280px' }, gap: 2.5 }}>
         {/* Left */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
-          {/* Overall Status */}
+          
+          {/* Manual Entry */}
           <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
             <CardContent sx={{ p: 3 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
-                <Box>
-                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 0.5 }}>OVERALL STATUS</Typography>
-                  <Typography sx={{ fontWeight: 700, fontSize: '1.25rem', color: '#111827' }}>Batch #W-2023-89A</Typography>
-                </Box>
-                <Box sx={{ backgroundColor: '#f3f4f6', borderRadius: '6px', px: 1.5, py: 0.5 }}>
-                  <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#374151', letterSpacing: '0.04em' }}>FINALIZED</Typography>
-                </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 0.75 }}>
+                <Box sx={{ fontSize: '1.125rem' }}>⊞</Box>
+                <Typography sx={{ fontWeight: 700, fontSize: '1rem', color: '#111827' }}>Manual Batch Entry</Typography>
               </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
-                <Box sx={{ width: 64, height: 64, borderRadius: '14px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                  <CheckIcon sx={{ fontSize: 36, color: '#1d4ed8' }} />
-                </Box>
-                <Box>
-                  <Typography sx={{ fontWeight: 800, fontSize: '1.75rem', color: '#1d4ed8', mb: 0.5 }}>Clinically Safe</Typography>
-                  <Typography sx={{ fontSize: '0.875rem', color: '#374151', lineHeight: 1.6 }}>
-                    This water batch meets all international safety parameters (WHO, EPA). No harmful contaminants detected above threshold limits.
-                  </Typography>
-                </Box>
+              <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280', mb: 2 }}>Enter an alphanumeric batch code to run a fresh safety analysis.</Typography>
+              <Box sx={{ display: 'flex', gap: 1.5 }}>
+                <TextField fullWidth size="small" value={code} onChange={(e) => setCode(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleScan()}
+                  sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', fontFamily: 'monospace', fontSize: '0.9375rem', '& fieldset': { borderColor: '#e5e7eb' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }} />
+                <IconButton onClick={handleScan} disabled={loading} sx={{ backgroundColor: '#1d4ed8', color: '#fff', borderRadius: '8px', width: 42, height: 42, flexShrink: 0, '&:hover': { backgroundColor: '#1e40af' } }}>
+                  {loading ? <CircularProgress size={20} sx={{ color: '#fff' }} /> : <SearchIcon sx={{ fontSize: 18 }} />}
+                </IconButton>
               </Box>
             </CardContent>
           </Card>
 
-          {/* Chemical Analysis */}
-          <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
-            <CardContent sx={{ p: 3 }}>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em' }}>DETAILED CHEMICAL ANALYSIS</Typography>
-                <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>Scan Time: 08:42 AM UTC</Typography>
-              </Box>
-              <Box sx={{ display: 'flex', gap: 3, alignItems: 'center', flexWrap: 'wrap' }}>
-                <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                  <TDSGauge value={112} />
-                  <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280', textAlign: 'center' }}>Optimal Range: 50 – 150 ppm</Typography>
-                </Box>
-                <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5, flex: 1 }}>
-                  {chems.map((c) => (
-                    <Box key={c.label} sx={{ border: '1px solid #e5e7eb', borderRadius: '10px', p: 1.75 }}>
-                      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 0.5 }}>
-                        <Box>
-                          <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{c.label}</Typography>
-                          <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>{c.target}</Typography>
-                        </Box>
-                        <Box>
-                          <Typography sx={{ fontWeight: 700, fontSize: '0.9375rem', color: '#111827', textAlign: 'right' }}>{c.value}</Typography>
-                          <Typography sx={{ fontSize: '0.6875rem', fontWeight: 700, color: c.statusColor, textAlign: 'right' }}>{c.status}</Typography>
-                        </Box>
-                      </Box>
+          {scanned && (
+            <>
+              {/* Overall Status */}
+              <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2.5 }}>
+                    <Box>
+                      <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em', mb: 0.5 }}>OVERALL STATUS</Typography>
+                      <Typography sx={{ fontWeight: 700, fontSize: '1.25rem', color: '#111827' }}>Batch #W-2023-89A</Typography>
                     </Box>
-                  ))}
-                </Box>
-              </Box>
-            </CardContent>
-          </Card>
+                    <Box sx={{ backgroundColor: '#f3f4f6', borderRadius: '6px', px: 1.5, py: 0.5 }}>
+                      <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#374151', letterSpacing: '0.04em' }}>FINALIZED</Typography>
+                    </Box>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 2.5 }}>
+                    <Box sx={{ width: 64, height: 64, borderRadius: '14px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <CheckIcon sx={{ fontSize: 36, color: '#1d4ed8' }} />
+                    </Box>
+                    <Box>
+                      <Typography sx={{ fontWeight: 800, fontSize: '1.75rem', color: '#1d4ed8', mb: 0.5 }}>Clinically Safe</Typography>
+                      <Typography sx={{ fontSize: '0.875rem', color: '#374151', lineHeight: 1.6 }}>
+                        This water batch meets all international safety parameters (WHO, EPA). No harmful contaminants detected above threshold limits.
+                      </Typography>
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+
+              {/* Chemical Analysis */}
+              <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
+                <CardContent sx={{ p: 3 }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+                    <Typography sx={{ fontSize: '0.75rem', fontWeight: 700, color: '#9ca3af', letterSpacing: '0.05em' }}>DETAILED CHEMICAL ANALYSIS</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', color: '#9ca3af' }}>Scan Time: 08:42 AM UTC</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', gap: 3, alignItems: 'center', flexWrap: 'wrap' }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
+                      <TDSGauge value={112} />
+                      <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280', textAlign: 'center' }}>Optimal Range: 50 – 150 ppm</Typography>
+                    </Box>
+                    <Box sx={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1.5, flex: 1 }}>
+                      {chems.map((c) => (
+                        <Box key={c.label} sx={{ border: '1px solid #e5e7eb', borderRadius: '10px', p: 1.75 }}>
+                          <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 0.5 }}>
+                            <Box>
+                              <Typography sx={{ fontWeight: 600, fontSize: '0.875rem', color: '#111827' }}>{c.label}</Typography>
+                              <Typography sx={{ fontSize: '0.75rem', color: '#9ca3af' }}>{c.target}</Typography>
+                            </Box>
+                            <Box>
+                              <Typography sx={{ fontWeight: 700, fontSize: '0.9375rem', color: '#111827', textAlign: 'right' }}>{c.value}</Typography>
+                              <Typography sx={{ fontSize: '0.6875rem', fontWeight: 700, color: c.statusColor, textAlign: 'right' }}>{c.status}</Typography>
+                            </Box>
+                          </Box>
+                        </Box>
+                      ))}
+                    </Box>
+                  </Box>
+                </CardContent>
+              </Card>
+            </>
+          )}
         </Box>
 
-        {/* Right */}
+        {scanned && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
           {/* Supplier */}
           <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
@@ -175,6 +226,7 @@ const WaterVerificationPage = () => {
             </CardContent>
           </Card>
         </Box>
+        )}
       </Box>
     </Box>
   );

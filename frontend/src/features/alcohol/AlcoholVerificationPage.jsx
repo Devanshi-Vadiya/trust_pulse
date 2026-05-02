@@ -1,6 +1,8 @@
 import { useState } from 'react';
-import { Box, Typography, TextField, Button, Card, CardContent, IconButton, Divider } from '@mui/material';
+import { Box, Typography, TextField, Button, Card, CardContent, IconButton, Divider, CircularProgress } from '@mui/material';
 import { Search as SearchIcon, Download as DownloadIcon, CheckCircle as CheckIcon, Cancel as CancelIcon, Warning as WarnIcon } from '@mui/icons-material';
+import { useSnackbar } from 'notistack';
+import apiClient from '../../../services/api';
 
 const custodyHistory = [
   { date: 'Today, 14:32 UTC', type: 'Consumer Scan', location: 'Berlin, DE', actor: 'Mobile App User', status: 'Cloned Scan', statusType: 'cloned' },
@@ -11,12 +13,35 @@ const custodyHistory = [
 ];
 
 const AlcoholVerificationPage = () => {
-  const [code, setCode] = useState('AX-7729-B1');
+  const [code, setCode] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [scanned, setScanned] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const statusStyles = {
     cloned: { bg: '#fee2e2', color: '#dc2626', label: 'Cloned Scan', icon: <WarnIcon sx={{ fontSize: 12 }} /> },
     verified: { bg: '#f0fdf4', color: '#16a34a', label: 'Verified', icon: <CheckIcon sx={{ fontSize: 12 }} /> },
     genesis: { bg: '#eff6ff', color: '#1d4ed8', label: 'Genesis', icon: <CheckIcon sx={{ fontSize: 12 }} /> },
+  };
+
+  const handleScan = async () => {
+    if (!code.trim()) return;
+    setLoading(true);
+    setScanned(false);
+    
+    try {
+      const response = await apiClient.post('/sugar/scan', { barcode: code.trim() });
+      const data = response.data.data;
+      
+      enqueueSnackbar(`Verified Brand: ${data.brand || 'Unknown'} - ${data.name}`, { 
+        variant: 'success' 
+      });
+      setScanned(true);
+    } catch (err) {
+      enqueueSnackbar('Product barcode not found in global database.', { variant: 'error' });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -47,16 +72,17 @@ const AlcoholVerificationPage = () => {
               <Typography sx={{ fontSize: '0.8125rem', color: '#6b7280', mb: 2 }}>Enter a 10-digit alphanumeric security code to run a fresh verification scan.</Typography>
               <Typography sx={{ fontSize: '0.8125rem', fontWeight: 600, color: '#374151', mb: 1 }}>Security Code</Typography>
               <Box sx={{ display: 'flex', gap: 1.5 }}>
-                <TextField fullWidth size="small" value={code} onChange={(e) => setCode(e.target.value)}
+                <TextField fullWidth size="small" value={code} onChange={(e) => setCode(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && handleScan()}
                   sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', fontFamily: 'monospace', fontSize: '0.9375rem', '& fieldset': { borderColor: '#e5e7eb' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }} />
-                <IconButton sx={{ backgroundColor: '#1d4ed8', color: '#fff', borderRadius: '8px', width: 42, height: 42, flexShrink: 0, '&:hover': { backgroundColor: '#1e40af' } }}>
-                  <SearchIcon sx={{ fontSize: 18 }} />
+                <IconButton onClick={handleScan} disabled={loading} sx={{ backgroundColor: '#1d4ed8', color: '#fff', borderRadius: '8px', width: 42, height: 42, flexShrink: 0, '&:hover': { backgroundColor: '#1e40af' } }}>
+                  {loading ? <CircularProgress size={20} sx={{ color: '#fff' }} /> : <SearchIcon sx={{ fontSize: 18 }} />}
                 </IconButton>
               </Box>
             </CardContent>
           </Card>
 
           {/* Suspicious status */}
+          {scanned && (
           <Card elevation={0} sx={{ border: '1px solid #fecaca', borderRadius: '14px', backgroundColor: '#fff' }}>
             <CardContent sx={{ p: 3, textAlign: 'center' }}>
               <Box sx={{ width: 64, height: 64, borderRadius: '50%', backgroundColor: '#fee2e2', display: 'flex', alignItems: 'center', justifyContent: 'center', mx: 'auto', mb: 2 }}>
@@ -144,6 +170,7 @@ const AlcoholVerificationPage = () => {
           </Card>
         </Box>
       </Box>
+      )}
     </Box>
   );
 };
