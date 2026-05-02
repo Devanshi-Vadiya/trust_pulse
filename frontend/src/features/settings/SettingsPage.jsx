@@ -19,12 +19,12 @@ const SettingsPage = () => {
       {/* Main grid */}
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', lg: '280px 1fr' }, gap: 3 }}>
         {/* Left: Profile Card */}
-        <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px', alignSelf: 'start' }}>
+        <Card elevation={0} sx={{ border: 1, borderColor: 'divider', borderRadius: '14px', alignSelf: 'start' }}>
           <CardContent sx={{ p: 3, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
             <Avatar
               sx={{
                 width: 80, height: 80, mb: 2,
-                backgroundColor: '#dbeafe',
+                backgroundColor: 'action.disabledBackground',
                 fontSize: '2.5rem',
               }}
             >
@@ -40,7 +40,7 @@ const SettingsPage = () => {
                 borderColor: '#1d4ed8', color: '#1d4ed8',
                 textTransform: 'none', fontWeight: 600, borderRadius: '8px',
                 mb: 1.5, fontSize: '0.875rem',
-                '&:hover': { backgroundColor: '#eff6ff' },
+                '&:hover': { backgroundColor: 'action.hover' },
               }}
             >
               Edit Profile
@@ -50,10 +50,10 @@ const SettingsPage = () => {
               variant="outlined"
               startIcon={<PersonIcon sx={{ fontSize: 15 }} />}
               sx={{
-                borderColor: '#e5e7eb', color: 'text.primary',
+                borderColor: 'divider', color: 'text.primary',
                 textTransform: 'none', fontWeight: 600, borderRadius: '8px',
                 fontSize: '0.875rem',
-                '&:hover': { borderColor: '#d1d5db', backgroundColor: '#f9fafb' },
+                '&:hover': { borderColor: 'divider', backgroundColor: 'action.hover' },
               }}
             >
               View Public Profile
@@ -64,12 +64,12 @@ const SettingsPage = () => {
         {/* Right: Security + Danger Zone */}
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5 }}>
           {/* Account Security */}
-          <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '14px' }}>
+          <Card elevation={0} sx={{ border: 1, borderColor: 'divider', borderRadius: '14px' }}>
             <CardContent sx={{ p: 3 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 3 }}>
                 <Box sx={{
                   width: 40, height: 40, borderRadius: '10px',
-                  backgroundColor: '#f3f4f6',
+                  backgroundColor: 'action.disabledBackground',
                   display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem',
                 }}>
                   🔒
@@ -111,7 +111,7 @@ const SettingsPage = () => {
           </Card>
 
           {/* Danger Zone */}
-          <Card elevation={0} sx={{ border: '1px solid #fecaca', borderRadius: '14px', backgroundColor: '#fff' }}>
+          <Card elevation={0} sx={{ border: 1, borderColor: 'error.main', borderRadius: '14px', backgroundColor: 'background.paper' }}>
             <CardContent sx={{ p: 3 }}>
               <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: '#dc2626', mb: 0.75 }}>Danger Zone</Typography>
               <Typography sx={{ fontSize: '0.875rem', color: 'text.secondary', mb: 3 }}>Irreversible actions concerning your account data.</Typography>

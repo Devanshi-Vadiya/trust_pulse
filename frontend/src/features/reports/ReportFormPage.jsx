@@ -12,9 +12,9 @@ const ReportFormPage = () => {
   const charCount = form.description.length;
 
   return (
-    <Box sx={{ minHeight: '100vh', backgroundColor: '#f8fafc', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', p: { xs: 2, md: 4 }, fontFamily: 'Inter, sans-serif', pt: { xs: 3, md: 6 } }}>
+    <Box sx={{ minHeight: '100vh', backgroundColor: 'background.default', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', p: { xs: 2, md: 4 }, fontFamily: 'Inter, sans-serif', pt: { xs: 3, md: 6 } }}>
       <Box sx={{ width: '100%', maxWidth: 700 }}>
-        <Card elevation={0} sx={{ border: '1px solid #e5e7eb', borderRadius: '16px', backgroundColor: '#fff' }}>
+        <Card elevation={0} sx={{ border: 1, borderColor: 'divider', borderRadius: '16px', backgroundColor: 'background.paper' }}>
           <CardContent sx={{ p: { xs: 3, md: 4 } }}>
             {/* Title */}
             <Typography sx={{ fontWeight: 800, fontSize: '1.625rem', color: 'text.primary', mb: 0.75 }}>Report a Safety Risk</Typography>
@@ -29,8 +29,8 @@ const ReportFormPage = () => {
                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.75 }}>
                     <Box sx={{
                       width: 36, height: 36, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      backgroundColor: i === step ? '#1d4ed8' : i < step ? '#1d4ed8' : '#f3f4f6',
-                      color: i <= step ? '#fff' : '#9ca3af',
+                      backgroundColor: i <= step ? '#1d4ed8' : 'action.disabledBackground',
+                      color: i <= step ? '#fff' : 'text.disabled',
                       fontWeight: 700, fontSize: '0.9375rem',
                     }}>
                       {i < step ? '✓' : i + 1}
@@ -40,7 +40,7 @@ const ReportFormPage = () => {
                     </Typography>
                   </Box>
                   {i < STEPS.length - 1 && (
-                    <Box sx={{ flex: 1, height: 2, backgroundColor: i < step ? '#1d4ed8' : '#e5e7eb', mx: 1.5, mb: 3.5 }} />
+                    <Box sx={{ flex: 1, height: 2, backgroundColor: i < step ? '#1d4ed8' : 'divider', mx: 1.5, mb: 3.5 }} />
                   )}
                 </Box>
               ))}
@@ -60,7 +60,7 @@ const ReportFormPage = () => {
                       onChange={(e) => setForm({ ...form, category: e.target.value })}
                       displayEmpty
                       renderValue={(v) => v || <span style={{ color: 'text.secondary' }}>Select a category...</span>}
-                      sx={{ borderRadius: '8px', '& .MuiOutlinedInput-notchedOutline': { borderColor: '#e5e7eb' }, '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#2563eb' } }}
+                      sx={{ borderRadius: '8px', '& .MuiOutlinedInput-notchedOutline': { borderColor: 'divider' }, '&.Mui-focused .MuiOutlinedInput-notchedOutline': { borderColor: '#2563eb' } }}
                     >
                       <MenuItem value="contamination">Contamination</MenuItem>
                       <MenuItem value="mislabeling">Mislabeling</MenuItem>
@@ -77,7 +77,7 @@ const ReportFormPage = () => {
                   <TextField
                     fullWidth placeholder="e.g. Organic Almond Milk 32oz"
                     value={form.productName} onChange={(e) => setForm({ ...form, productName: e.target.value })}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', '& fieldset': { borderColor: '#e5e7eb' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', '& fieldset': { borderColor: 'divider' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
                   />
                 </Box>
 
@@ -89,17 +89,17 @@ const ReportFormPage = () => {
                     placeholder="Describe the issue, how it was discovered, and any immediate effects..."
                     value={form.description}
                     onChange={(e) => e.target.value.length <= 500 && setForm({ ...form, description: e.target.value })}
-                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', '& fieldset': { borderColor: '#e5e7eb' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
+                    sx={{ '& .MuiOutlinedInput-root': { borderRadius: '8px', '& fieldset': { borderColor: 'divider' }, '&.Mui-focused fieldset': { borderColor: '#2563eb' } } }}
                   />
                   <Typography sx={{ fontSize: '0.75rem', color: 'text.secondary', mt: 0.75 }}>{charCount} / 500</Typography>
                 </Box>
 
                 {/* Warning callout */}
-                <Box sx={{ display: 'flex', gap: 1.5, borderLeft: '3px solid #dc2626', backgroundColor: '#fff5f5', borderRadius: '0 8px 8px 0', p: 2 }}>
-                  <WarningIcon sx={{ fontSize: 20, color: '#dc2626', flexShrink: 0, mt: 0.25 }} />
+                <Box sx={{ display: 'flex', gap: 1.5, borderLeft: '3px solid #dc2626', backgroundColor: 'error.main', opacity: 0.9, borderRadius: '0 8px 8px 0', p: 2 }}>
+                  <WarningIcon sx={{ fontSize: 20, color: '#fff', flexShrink: 0, mt: 0.25 }} />
                   <Box>
-                    <Typography sx={{ fontWeight: 700, fontSize: '0.875rem', color: 'text.primary', mb: 0.25 }}>Immediate Hazard?</Typography>
-                    <Typography sx={{ fontSize: '0.8125rem', color: 'text.primary' }}>
+                    <Typography sx={{ fontWeight: 700, fontSize: '0.875rem', color: '#fff', mb: 0.25 }}>Immediate Hazard?</Typography>
+                    <Typography sx={{ fontSize: '0.8125rem', color: '#fff' }}>
                       If this issue requires immediate medical attention, please contact local emergency services first.
                     </Typography>
                   </Box>
@@ -122,7 +122,7 @@ const ReportFormPage = () => {
                 <Typography sx={{ fontSize: '2rem', mb: 2 }}>✅</Typography>
                 <Typography sx={{ fontWeight: 700, fontSize: '1.125rem', color: 'text.primary', mb: 1 }}>Review & Submit</Typography>
                 <Typography sx={{ color: 'text.secondary', fontSize: '0.9375rem', mb: 2 }}>Review the details before submitting your safety report.</Typography>
-                <Box sx={{ backgroundColor: '#f9fafb', borderRadius: '10px', p: 2.5, textAlign: 'left' }}>
+                <Box sx={{ backgroundColor: 'action.hover', borderRadius: '10px', p: 2.5, textAlign: 'left' }}>
                   <Typography sx={{ fontSize: '0.875rem', color: 'text.primary', mb: 0.75 }}><strong>Category:</strong> {form.category || '—'}</Typography>
                   <Typography sx={{ fontSize: '0.875rem', color: 'text.primary', mb: 0.75 }}><strong>Product:</strong> {form.productName || '—'}</Typography>
                   <Typography sx={{ fontSize: '0.875rem', color: 'text.primary' }}><strong>Description:</strong> {form.description || '—'}</Typography>
@@ -131,9 +131,9 @@ const ReportFormPage = () => {
             )}
 
             {/* Footer */}
-            <Box sx={{ mt: 4, pt: 3, borderTop: '1px solid #e5e7eb', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <Box sx={{ mt: 4, pt: 3, borderTop: 1, borderColor: 'divider', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Button onClick={() => step === 0 ? navigate(-1) : setStep(s => s - 1)}
-                sx={{ color: 'text.secondary', textTransform: 'none', fontWeight: 600, '&:hover': { backgroundColor: '#f3f4f6' } }}>
+                sx={{ color: 'text.secondary', textTransform: 'none', fontWeight: 600, '&:hover': { backgroundColor: 'action.hover' } }}>
                 {step === 0 ? 'Cancel' : '← Back'}
               </Button>
               <Button
