@@ -1,6 +1,6 @@
 import { memo } from 'react';
 import { Card, CardContent } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useTheme } from '@mui/material/styles';
 
 const AppCard = ({
   children,
@@ -10,13 +10,13 @@ const AppCard = ({
   className = '',
   ...props
 }) => {
-  const themeMode = useSelector((state) => state.ui.themeMode);
+  const theme = useTheme();
 
   // Base styling for cards
   const baseSx = {
-    border: themeMode === 'light' ? '1px solid #e5e7eb' : '1px solid #334155',
+    border: theme.palette.mode === 'light' ? '1px solid #e5e7eb' : '1px solid #334155',
     borderRadius: '14px',
-    backgroundColor: themeMode === 'light' ? '#ffffff' : '#1e293b',
+    backgroundColor: theme.palette.mode === 'light' ? '#ffffff' : '#1e293b',
     transition: 'all 0.2s',
     ...sx,
   };

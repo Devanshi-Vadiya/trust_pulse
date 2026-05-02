@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Box, Typography, CardContent, Chip, LinearProgress } from '@mui/material';
+import { Box, Typography, CardContent, Chip, LinearProgress } , useTheme } from '@mui/material';
 import { CheckCircle, Warning, Cancel, ArrowBack } from '@mui/icons-material';
 import AppCard from '../../components/AppCard';
 import AppButton from '../../components/AppButton';
@@ -44,8 +44,8 @@ const statusConfig = {
 
 const ProductResultPage = () => {
   const navigate = useNavigate();
-  const themeMode = useSelector((state) => state.ui.themeMode);
-  const isLight = themeMode === 'light';
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
   const t = (light, dark) => (isLight ? light : dark);
 
   const scoreColor =

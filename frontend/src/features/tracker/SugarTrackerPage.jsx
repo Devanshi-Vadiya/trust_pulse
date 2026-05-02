@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogActions,
   MenuItem,
+  useTheme
 } from '@mui/material';
 import {
   Download as DownloadIcon,
@@ -118,8 +119,8 @@ const sugarEntrySchema = Yup.object().shape({
 const SugarTrackerPage = () => {
   const [scansLog, setScansLog] = useState(initialScansLog);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const themeMode = useSelector((state) => state.ui.themeMode);
-  const isLight = themeMode === 'light';
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
   const t = (light, dark) => (isLight ? light : dark);
 
   const formik = useFormik({

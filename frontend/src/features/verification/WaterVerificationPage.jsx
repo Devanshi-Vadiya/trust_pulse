@@ -6,7 +6,7 @@ import PageSEO from '../../components/PageSEO';
 import AppButton from '../../components/AppButton';
 import AppInput from '../../components/AppInput';
 import AppCard from '../../components/AppCard';
-import { Box, Typography, CardContent, LinearProgress } from '@mui/material';
+import { Box, Typography, CardContent, LinearProgress } , useTheme } from '@mui/material';
 import { Search as SearchIcon, CheckCircle, Warning, WaterDrop } from '@mui/icons-material';
 
 const parameters = [
@@ -43,8 +43,8 @@ const WaterVerificationPage = () => {
   const [query, setQuery] = useState('');
   const [loading, setLoading] = useState(false);
   const [scanned, setScanned] = useState(false);
-  const themeMode = useSelector((state) => state.ui.themeMode);
-  const isLight = themeMode === 'light';
+  const theme = useTheme();
+  const isLight = theme.palette.mode === 'light';
   const { enqueueSnackbar } = useSnackbar();
   const t = (light, dark) => (isLight ? light : dark);
 
