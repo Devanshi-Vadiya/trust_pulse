@@ -2,12 +2,14 @@
 
 <p align="center">
   <b>A unified platform to verify product safety, authenticity, and quality</b><br/>
-  <i>Scan · Verify · Track · Trust</i>
+<i>Scan · Verify · Track · Trust</i>
 </p>
-
 <p align="center">
   <a href="https://trust-pulse-blue.vercel.app/">
     <img src="https://img.shields.io/badge/Live%20Demo-trust--pulse--blue.vercel.app-blue?style=for-the-badge&logo=vercel" alt="Live Demo"/>
+  </a>
+  <a href="https://youtu.be/711ulGf-7ck">
+    <img src="https://img.shields.io/badge/YouTube-Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Demo"/>
   </a>
   <a href="https://www.figma.com/design/YBDuWGLy6yqIYLaZHGoAnE/HW-7-8--minecraft-valo?node-id=2015-1786&t=wiNyJq0RSRw7qaG2-1">
     <img src="https://img.shields.io/badge/Design-Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white" alt="Figma"/>
@@ -16,7 +18,6 @@
     <img src="https://img.shields.io/badge/API%20Docs-Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman"/>
   </a>
 </p>
-
 ---
 
 ## 📋 Table of Contents
